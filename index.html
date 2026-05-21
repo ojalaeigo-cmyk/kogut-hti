@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>KaldeKoguja</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+html,body{width:100%;height:100%;overflow:hidden;background:#071018;font-family:Arial,sans-serif}
+#wrap{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at top,#17324c,#071018 70%)}
+canvas{width:100vw;height:100vh;max-width:520px;background:#101923;touch-action:none;-webkit-tap-highlight-color:transparent}
+#hud{position:fixed;top:10px;left:50%;transform:translateX(-50%);width:min(94vw,500px);display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;color:white;font-size:14px;font-weight:bold;text-shadow:0 2px 3px #000;z-index:5;pointer-events:none}
+.box{background:rgba(0,0,0,.42);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:8px 8px;text-align:center}
+#hint{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);width:min(92vw,480px);color:white;text-align:center;background:rgba(0,0,0,.36);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:10px 12px;font-size:14px;line-height:1.3;z-index:5;pointer-events:none}
+.screen{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.78);z-index:20;color:white;text-align:center;padding:22px}
+.panel{width:min(92vw,460px);max-height:86vh;overflow:auto;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.2);border-radius:24px;padding:26px 20px}
+.panel h1{font-size:34px;margin-bottom:12px}.panel p{font-size:15px;line-height:1.38;margin-bottom:12px;opacity:.94}
+button{border:0;border-radius:999px;padding:15px 25px;font-size:18px;font-weight:bold;background:white;color:#111;cursor:pointer;margin-top:4px}
+input{width:100%;border:1px solid rgba(255,255,255,.25);border-radius:16px;padding:13px 14px;font-size:17px;background:rgba(255,255,255,.92);color:#111;margin:6px 0 12px 0;text-align:center}
+.hidden{display:none!important}
+.yellow{color:#ffd966}.red{color:#ff9c9c}.green{color:#8cffb1}
+table{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px}
+th,td{padding:7px 6px;border-bottom:1px solid rgba(255,255,255,.16)}
+th{color:#ffd966}
+td:nth-child(1){width:34px}
+td:nth-child(3){text-align:right;font-weight:bold}
+.small{font-size:13px!important;opacity:.75!important}
+</style>
+</head>
+<body>
+<div id="wrap"><canvas id="game"></canvas></div>
+
+<div id="hud">
+  <div class="box">Punktid<br><span id="score" class="yellow">0</span></div>
+  <div class="box">Elud<br><span id="lives" class="red">3</span></div>
+  <div class="box">Parim<br><span id="best" class="green">0</span></div>
+</div>
+
+<div id="hint">Kalluta telefoni vasakule või paremale. Varuvariant: lohista sõrmega.</div>
+
+<div id="start" class="screen">
+  <div class="panel">
+    <h1>KaldeKoguja</h1>
+    <p><b>Telefonist sõltuv mäng:</b> juhid mängijat telefoni kallutamisega.</p>
+    <p>Kogu <span class="yellow">kollaseid tähti</span>. Väldi <span class="red">punaseid kive</span>. Pihta saades telefon vibreerib.</p>
+    <p>Nimi on vabatahtlik. Kui kirjutad nime, näidatakse sind mängu lõpus edetabelis.</p>
+    <input id="playerName" maxlength="18" autocomplete="nickname" placeholder="Sinu nimi edetabelis (vabatahtlik)">
+    <button id="startBtn" type="button">Alusta</button>
+    <p class="small">Edetabel salvestub ainult selles brauseris / telefonis. Sisselogimist ei ole.</p>
+  </div>
+</div>
+
+<div id="over" class="screen hidden">
+  <div class="panel">
+    <h1>Mäng läbi</h1>
+    <p>Tulemus: <b><span id="finalScore">0</span></b></p>
+    <div id="leaderboardWrap" class="hidden">
+      <p><b>Edetabel</b></p>
+      <table>
+        <thead><tr><th>#</th><th>Nimi</th><th>Punktid</th></tr></thead>
+        <tbody id="leaderboardBody"></tbody>
+      </table>
+    </div>
+    <p id="noNameNote" class="small hidden">Nime ei sisestatud, seega tulemus jäi ainult parima tulemuse alla.</p>
+    <button id="againBtn" type="button">Mängi uuesti</button>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+const canvas=document.getElementById("game");
+const ctx=canvas.getContext("2d");
+const $=id=>document.getElementById(id);
+
+let W=360,H=640,S=1,frame=0,running=false;
+let score=0,lives=3,best=Number(localStorage.getItem("kaldekoguja_best")||0);
+let currentName=localStorage.getItem("kaldekoguja_name")||"";
+let player={x:180,y:560,w:64,h:28,vx:0};
+let items=[],particles=[];
+let spawnT=0,speed=3.0,tiltX=0,hasTilt=false,touching=false;
+let audioCtx=null;
+
+$("best").textContent=best;
+$("playerName").value=currentName;
+
+function cleanName(v){
+  return (v||"").trim().replace(/\s+/g," ").slice(0,18);
+}
+
+function getBoard(){
+  try{
+    const data=JSON.parse(localStorage.getItem("kaldekoguja_board")||"[]");
+    return Array.isArray(data)?data:[];
+  }catch(e){return []}
+}
+
+function saveBoard(board){
+  localStorage.setItem("kaldekoguja_board",JSON.stringify(board.slice(0,10)));
+}
+
+function addToBoard(name,points){
+  name=cleanName(name);
+  if(!name)return null;
+  const board=getBoard();
+  board.push({name,score:points,date:Date.now()});
+  board.sort((a,b)=>b.score-a.score||a.date-b.date);
+  const top=board.slice(0,10);
+  saveBoard(top);
+  return top;
+}
+
+function renderBoard(board){
+  const body=$("leaderboardBody");
+  body.innerHTML="";
+  board.forEach((r,i)=>{
+    const tr=document.createElement("tr");
+    const rank=document.createElement("td");
+    const name=document.createElement("td");
+    const points=document.createElement("td");
+    rank.textContent=i+1;
+    name.textContent=r.name;
+    points.textContent=r.score;
+    tr.appendChild(rank);
+    tr.appendChild(name);
+    tr.appendChild(points);
+    body.appendChild(tr);
+  });
+}
+
+function resize(){
+  const cw=Math.min(innerWidth,520);
+  const ch=innerHeight;
+  canvas.style.width=cw+"px";
+  canvas.style.height=ch+"px";
+  canvas.width=cw;
+  canvas.height=ch;
+  ctx.setTransform(1,0,0,1,0,0);
+  W=cw;H=ch;S=W/360;
+  player.y=H-96;
+  player.x=Math.max(player.w*S/2,Math.min(W-player.w*S/2,player.x));
+}
+addEventListener("resize",resize);
+resize();
+
+function initAudio(){
+  try{
+    const Ctx=window.AudioContext||window.webkitAudioContext;
+    if(!Ctx)return;
+    if(!audioCtx)audioCtx=new Ctx();
+    if(audioCtx.state==="suspended")audioCtx.resume();
+  }catch(e){}
+}
+function tone(f1,f2,d=.10,v=.04,type="sine"){
+  try{
+    if(!audioCtx)return;
+    const n=audioCtx.currentTime,o=audioCtx.createOscillator(),g=audioCtx.createGain();
+    o.type=type;
+    o.frequency.setValueAtTime(f1,n);
+    o.frequency.exponentialRampToValueAtTime(Math.max(40,f2),n+d);
+    g.gain.setValueAtTime(.0001,n);
+    g.gain.exponentialRampToValueAtTime(v,n+.015);
+    g.gain.exponentialRampToValueAtTime(.0001,n+d);
+    o.connect(g);g.connect(audioCtx.destination);
+    o.start(n);o.stop(n+d+.03);
+  }catch(e){}
+}
+function good(){tone(520,840,.12,.05)}
+function bad(){tone(160,80,.15,.06,"triangle")}
+function rand(a,b){return Math.random()*(b-a)+a}
+
+async function enableTilt(){
+  try{
+    if(typeof DeviceOrientationEvent!=="undefined" && typeof DeviceOrientationEvent.requestPermission==="function"){
+      const res=await DeviceOrientationEvent.requestPermission();
+      if(res!=="granted")return;
+    }
+    window.addEventListener("deviceorientation",e=>{
+      if(typeof e.gamma==="number"){
+        tiltX=Math.max(-1,Math.min(1,e.gamma/28));
+        hasTilt=true;
+      }
+    });
+  }catch(e){}
+}
+
+function startGame(){
+  initAudio();
+  enableTilt();
+
+  currentName=cleanName($("playerName").value);
+  if(currentName)localStorage.setItem("kaldekoguja_name",currentName);
+  else localStorage.removeItem("kaldekoguja_name");
+
+  running=true;
+  score=0;lives=3;speed=3.0;spawnT=0;items=[];particles=[];
+  player.x=W/2;player.vx=0;
+  $("score").textContent=score;
+  $("lives").textContent=lives;
+  $("start").classList.add("hidden");
+  $("over").classList.add("hidden");
+}
+
+function gameOver(){
+  running=false;
+  if(score>best){
+    best=score;
+    localStorage.setItem("kaldekoguja_best",best);
+    $("best").textContent=best;
+  }
+
+  $("finalScore").textContent=score;
+
+  if(currentName){
+    const board=addToBoard(currentName,score);
+    renderBoard(board||getBoard());
+    $("leaderboardWrap").classList.remove("hidden");
+    $("noNameNote").classList.add("hidden");
+  }else{
+    $("leaderboardWrap").classList.add("hidden");
+    $("noNameNote").classList.remove("hidden");
+  }
+
+  $("over").classList.remove("hidden");
+}
+
+function spawn(){
+  const goodItem=Math.random()>0.34;
+  items.push({
+    x:rand(26*S,W-26*S),
+    y:-30*S,
+    r:goodItem?12*S:15*S,
+    type:goodItem?"star":"rock",
+    vy:speed+rand(0,1.3)*S,
+    spin:rand(0,Math.PI*2)
+  });
+}
+
+function hitCircleRect(c,r){
+  const x=Math.max(r.x-r.w/2,Math.min(r.x+r.w/2,c.x));
+  const y=Math.max(r.y-r.h/2,Math.min(r.y+r.h/2,c.y));
+  const dx=c.x-x,dy=c.y-y;
+  return dx*dx+dy*dy<c.r*c.r;
+}
+
+function boom(x,y,goodBoom){
+  for(let i=0;i<10;i++)particles.push({
+    x,y,
+    vx:rand(-2.2,2.2)*S,
+    vy:rand(-2.2,2.2)*S,
+    life:22,
+    r:rand(2,4)*S,
+    good:goodBoom
+  });
+}
+
+function update(){
+  if(!running)return;
+
+  speed=Math.min(8.5,3.0+score*0.018);
+
+  if(hasTilt && !touching){
+    player.vx=tiltX*8.0*S;
+    player.x+=player.vx;
+  }else{
+    player.x+=player.vx;
+    player.vx*=0.86;
+  }
+
+  player.x=Math.max(player.w*S/2,Math.min(W-player.w*S/2,player.x));
+
+  spawnT++;
+  const spawnRate=Math.max(20,48-score*0.18);
+  if(spawnT>spawnRate){
+    spawnT=0;
+    spawn();
+  }
+
+  items.forEach(i=>{
+    i.y+=i.vy;
+    i.spin+=0.06;
+  });
+  particles.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;p.life--;
+  });
+
+  const box={x:player.x,y:player.y,w:player.w*S,h:player.h*S};
+
+  for(const i of items){
+    if(i.dead)continue;
+    if(hitCircleRect(i,box)){
+      i.dead=true;
+      if(i.type==="star"){
+        score++;
+        $("score").textContent=score;
+        boom(i.x,i.y,true);
+        good();
+        if(navigator.vibrate)navigator.vibrate(18);
+      }else{
+        lives--;
+        $("lives").textContent=lives;
+        boom(i.x,i.y,false);
+        bad();
+        if(navigator.vibrate)navigator.vibrate([55,25,55]);
+        if(lives<=0){
+          gameOver();
+          return;
+        }
+      }
+    }
+  }
+
+  items=items.filter(i=>!i.dead && i.y<H+50);
+  particles=particles.filter(p=>p.life>0);
+}
+
+function drawBg(){
+  const g=ctx.createLinearGradient(0,0,0,H);
+  g.addColorStop(0,"#17324c");
+  g.addColorStop(1,"#071018");
+  ctx.fillStyle=g;
+  ctx.fillRect(0,0,W,H);
+
+  ctx.fillStyle="rgba(255,255,255,.08)";
+  for(let i=0;i<26;i++){
+    const x=(i*73+frame*.18)%W;
+    const y=70+(i*91)%Math.max(120,H-180);
+    ctx.beginPath();
+    ctx.arc(x,y,1.5+(i%3),0,Math.PI*2);
+    ctx.fill();
+  }
+}
+
+function rr(x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);
+  ctx.lineTo(x+w-r,y);
+  ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h-r);
+  ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  ctx.lineTo(x+r,y+h);
+  ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+  ctx.lineTo(x,y+r);
+  ctx.quadraticCurveTo(x,y,x+r,y);
+  ctx.closePath();
+}
+
+function drawPlayer(){
+  const w=player.w*S,h=player.h*S,x=player.x,y=player.y;
+  ctx.save();
+  ctx.translate(x,y);
+
+  ctx.fillStyle="rgba(0,0,0,.35)";
+  ctx.beginPath();
+  ctx.ellipse(0,h*.55,w*.58,h*.22,0,0,Math.PI*2);
+  ctx.fill();
+
+  ctx.fillStyle="#2e9fdb";
+  rr(-w/2,-h/2,w,h,12*S);
+  ctx.fill();
+
+  ctx.fillStyle="rgba(255,255,255,.45)";
+  rr(-w*.30,-h*.38,w*.60,h*.30,8*S);
+  ctx.fill();
+
+  ctx.fillStyle="#111";
+  ctx.fillRect(-w*.45,h*.10,w*.18,h*.28);
+  ctx.fillRect(w*.27,h*.10,w*.18,h*.28);
+
+  ctx.fillStyle="#ffd966";
+  ctx.beginPath();
+  ctx.arc(-w*.24,-h*.28,3*S,0,Math.PI*2);
+  ctx.arc(w*.24,-h*.28,3*S,0,Math.PI*2);
+  ctx.fill();
+
+  ctx.restore();
+}
+
+function drawStar(x,y,r,rot){
+  ctx.save();
+  ctx.translate(x,y);
+  ctx.rotate(rot);
+  ctx.fillStyle="#ffd966";
+  ctx.beginPath();
+  for(let i=0;i<10;i++){
+    const a=i*Math.PI/5-Math.PI/2;
+    const rr=i%2===0?r:r*.45;
+    ctx.lineTo(Math.cos(a)*rr,Math.sin(a)*rr);
+  }
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawRock(x,y,r,rot){
+  ctx.save();
+  ctx.translate(x,y);
+  ctx.rotate(rot);
+  ctx.fillStyle="#ff5d5d";
+  ctx.beginPath();
+  ctx.moveTo(-r*.7,-r*.2);
+  ctx.lineTo(-r*.25,-r*.75);
+  ctx.lineTo(r*.55,-r*.50);
+  ctx.lineTo(r*.75,r*.15);
+  ctx.lineTo(r*.20,r*.72);
+  ctx.lineTo(-r*.62,r*.52);
+  ctx.closePath();
+  ctx.fill();
+  ctx.fillStyle="rgba(0,0,0,.20)";
+  ctx.beginPath();
+  ctx.arc(-r*.18,-r*.10,r*.16,0,Math.PI*2);
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawItems(){
+  for(const i of items){
+    if(i.type==="star")drawStar(i.x,i.y,i.r,i.spin);
+    else drawRock(i.x,i.y,i.r,i.spin);
+  }
+}
+
+function drawParticles(){
+  for(const p of particles){
+    ctx.globalAlpha=p.life/22;
+    ctx.fillStyle=p.good?"#ffd966":"#ff7a7a";
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fill();
+    ctx.globalAlpha=1;
+  }
+}
+
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  drawBg();
+  drawItems();
+  drawParticles();
+  drawPlayer();
+
+  if(!hasTilt && running){
+    ctx.fillStyle="rgba(255,255,255,.70)";
+    ctx.font=`bold ${14*S}px Arial`;
+    ctx.textAlign="center";
+    ctx.fillText("Kalluta telefoni või lohista sõrmega",W/2,H*.28);
+  }
+}
+
+function loop(){
+  frame++;
+  try{update();draw();}catch(e){console.error(e);}
+  requestAnimationFrame(loop);
+}
+
+canvas.addEventListener("touchstart",e=>{
+  e.preventDefault();
+  touching=true;
+  const t=e.touches[0];
+  player.x=t.clientX-(innerWidth-W)/2;
+},{passive:false});
+
+canvas.addEventListener("touchmove",e=>{
+  e.preventDefault();
+  touching=true;
+  const t=e.touches[0];
+  player.x=t.clientX-(innerWidth-W)/2;
+},{passive:false});
+
+canvas.addEventListener("touchend",e=>{
+  e.preventDefault();
+  touching=false;
+},{passive:false});
+
+canvas.addEventListener("mousedown",e=>{
+  touching=true;
+  player.x=e.clientX-(innerWidth-W)/2;
+});
+canvas.addEventListener("mousemove",e=>{
+  if(touching)player.x=e.clientX-(innerWidth-W)/2;
+});
+canvas.addEventListener("mouseup",()=>touching=false);
+canvas.addEventListener("mouseleave",()=>touching=false);
+
+window.addEventListener("keydown",e=>{
+  if(e.key==="ArrowLeft"||e.key.toLowerCase()==="a")player.vx=-7*S;
+  if(e.key==="ArrowRight"||e.key.toLowerCase()==="d")player.vx=7*S;
+  if(e.key==="Enter"&&!running)startGame();
+});
+
+function bindStart(id){
+  const el=$(id);
+  const fn=e=>{if(e)e.preventDefault();startGame();};
+  el.addEventListener("click",fn);
+  el.addEventListener("touchstart",fn,{passive:false});
+  el.addEventListener("pointerdown",fn);
+}
+bindStart("startBtn");
+bindStart("againBtn");
+
+loop();
+})();
+</script>
+</body>
+</html>
