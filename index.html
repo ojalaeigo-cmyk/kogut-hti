@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>KaldeKoguja STABIILNE TEST PAUSIGA</title>
+<title>Star King</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#071018">
 <style>
@@ -18,7 +18,7 @@ canvas{width:100vw;height:100vh;max-width:520px;background:#101923;touch-action:
 #hint{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);width:min(92vw,480px);color:white;text-align:center;background:rgba(0,0,0,.36);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:10px 12px;font-size:14px;line-height:1.3;z-index:5;pointer-events:none}
 .screen{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.80);z-index:20;color:white;text-align:center;padding:22px}
 .panel{width:min(92vw,470px);max-height:88vh;overflow:auto;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.07));border:1px solid rgba(255,255,255,.22);border-radius:26px;padding:26px 20px;box-shadow:0 22px 60px rgba(0,0,0,.45)}
-.panel h1{font-size:36px;margin-bottom:10px;letter-spacing:.3px}.panel p{font-size:15px;line-height:1.38;margin-bottom:12px;opacity:.94}
+.panel h1{font-size:38px;margin-bottom:8px;letter-spacing:.4px;color:#ffd966;text-shadow:0 3px 12px rgba(0,0,0,.45)}.panel p{font-size:15px;line-height:1.38;margin-bottom:12px;opacity:.94}
 button{border:0;border-radius:999px;padding:15px 28px;font-size:18px;font-weight:bold;background:#fff;color:#111;cursor:pointer;margin-top:4px;box-shadow:0 10px 24px rgba(0,0,0,.25)}
 input,select{width:100%;border:1px solid rgba(255,255,255,.25);border-radius:16px;padding:13px 14px;font-size:17px;background:rgba(255,255,255,.92);color:#111;margin:6px 0 12px 0;text-align:center}
 .hidden{display:none!important}.yellow{color:#ffd966}.red{color:#ff9c9c}.green{color:#8cffb1}.blue{color:#8fd7ff}
@@ -58,7 +58,7 @@ table{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px}th,td{p
 
 <div id="start" class="screen">
   <div class="panel">
-    <h1 id="titleText">KaldeKoguja</h1>
+    <h1 id="titleText">Star King</h1>
     <div class="langLabel" id="languageLabel">Vali keel</div>
     <select id="languageSelect">
       <option value="et">Eesti</option>
@@ -73,16 +73,16 @@ table{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px}th,td{p
       <option value="pt">Português</option><option value="ro">Română</option><option value="sk">Slovenčina</option>
       <option value="sl">Slovenščina</option><option value="fi">Suomi</option><option value="sv">Svenska</option>
     </select>
-    <p id="intro1"><b>Telefonist sõltuv mäng:</b> juhid alust telefoni kallutamisega või sõrmega lohistades.</p>
-    <p id="intro2"><b>Oluline:</b> kallutamine on rahulikum ja aeglasem. Sõrmega lohistades on juhtimine kiirem ja täpsem.</p>
-    <p id="intro3">Kogu <span class="yellow">kollaseid tähti</span>. Väldi <span class="red">punaseid kive</span>. Kolm tabamust lõpetab mängu.</p>
+    <p id="intro1"><b>Star King</b> on lihtne telefonimäng: liigu vasakule ja paremale, kogu tähti ning hoia punastest kividest eemale.</p>
+    <p id="intro2">Kõige täpsem juhtimine on sõrmega lohistades. Telefoni kallutamine töötab rahulikumalt ja sobib aeglasemaks mängimiseks.</p>
+    <p id="intro3">Sul on <span class="red">3 elu</span>. Iga punane kivi võtab ühe elu. Kolmanda tabamuse järel on mäng läbi.</p>
     <div class="bonusLegend">
-      <div class="legendItem">⚡ <b>Sinine välk</b> — punased kivid kaovad hetkeks.</div>
-      <div class="legendItem">💚 <b>Roheline süda</b> — kõik elud taastuvad.</div>
-      <div class="legendItem">🌈 <b>Vikerkaar</b> — alus muudab värvi.</div>
+      <div class="legendItem">⭐ <b>Kollane täht</b> — annab punkti.</div>
+      <div class="legendItem">🟥 <b>Punane kivi</b> — võtab ühe elu.</div>
+      <div class="legendItem">⚡ ❤ 🌈 <b>Boonused</b> — aitavad raskematel tasemetel ellu jääda.</div>
     </div>
-    <p id="intro4">Iga 100 punkti järel ilmub boonuskast. Boonuse ikoon näitab mõju: ⚡ eemaldab punased 4 sekundiks, ♥ taastab elud, 🌈 muudab aluse värvi. Mäng on nüüd aeglasem, rahulikum ja liigub läbi 10 taseme.</p>
-    <p id="intro5">Nimi on vabatahtlik. Kui kirjutad nime, näidatakse sind mängu lõpus edetabelis.</p>
+    <p id="intro4">Iga 100 punkti järel ilmub boonus: ⚡ eemaldab punased 4 sekundiks, ❤ taastab elud ja 🌈 muudab aluse värvi.</p>
+    <p id="intro5">Soovi korral kirjuta nimi. Siis näed mängu lõpus oma tulemust kohalikus edetabelis.</p>
     <input id="playerName" maxlength="18" autocomplete="nickname" placeholder="Sinu nimi edetabelis (vabatahtlik)">
     <button id="startBtn" type="button">Alusta</button>
     <p id="smallNote" class="small">Edetabel salvestub ainult selles brauseris / telefonis. Sisselogimist ei ole.</p>
@@ -116,9 +116,9 @@ table{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px}th,td{p
 (function(){
 "use strict";
 const I18N={
-et:{lang:"Vali keel",title:"KaldeKoguja",i1:"<b>Telefonist sõltuv mäng:</b> juhid alust telefoni kallutamisega või sõrmega lohistades.",i2:"<b>Oluline:</b> kallutamine on rahulikum ja aeglasem. Sõrmega lohistades on juhtimine kiirem ja täpsem.",i3:"Kogu <span class='yellow'>kollaseid tähti</span>. Väldi <span class='red'>punaseid kive</span>. Kolm tabamust lõpetab mängu.",i4:"Iga 100 punkti järel ilmub boonuskast. Boonuse ikoon näitab mõju: ⚡ eemaldab punased 4 sekundiks, ♥ taastab elud, 🌈 muudab aluse värvi. Mäng on nüüd aeglasem, rahulikum ja liigub läbi 10 taseme.",i5:"Nimi on vabatahtlik. Kui kirjutad nime, näidatakse sind mängu lõpus edetabelis.",ph:"Sinu nimi edetabelis (vabatahtlik)",start:"Alusta",note:"Edetabel salvestub ainult selles brauseris / telefonis. Sisselogimist ei ole.",hint:"Kalluta telefoni või lohista sõrmega.",score:"Punktid",lives:"Elud",best:"Parim",over:"Mäng läbi",result:"Tulemus:",again:"Mängi uuesti",board:"Edetabel",name:"Nimi",points:"Punktid",noname:"Nime ei sisestatud, seega tulemus jäi ainult parima tulemuse alla.",rank:"Tase:"},
-en:{lang:"Choose language",title:"Tilt Collector",i1:"<b>Phone-based game:</b> control the base by tilting the phone or dragging with your finger.",i2:"<b>Important:</b> tilt is calmer and slower. Finger dragging is faster and more precise.",i3:"Collect <span class='yellow'>yellow stars</span>. Avoid <span class='red'>red rocks</span>. Three hits ends the game.",i4:"Every 100 points a bonus box appears. The icon shows the effect: ⚡ clears red rocks for 4 seconds, ♥ restores lives, 🌈 changes the base color. The game is now slower, calmer and progresses through 10 ranks.",i5:"Name is optional. If entered, your score appears on the leaderboard.",ph:"Your leaderboard name (optional)",start:"Start",note:"Leaderboard is saved only in this browser/phone. No login.",hint:"Tilt the phone or drag with your finger.",score:"Score",lives:"Lives",best:"Best",over:"Game over",result:"Score:",again:"Play again",board:"Leaderboard",name:"Name",points:"Points",noname:"No name was entered.",rank:"Rank:"},
-uk:{lang:"Виберіть мову",title:"Збирач нахилу",i1:"<b>Гра для телефону:</b> керуйте нахилом телефону або пальцем.",i2:"<b>Важливо:</b> нахил спокійніший і повільніший. Пальцем швидше й точніше.",i3:"Збирайте <span class='yellow'>жовті зірки</span>. Уникайте <span class='red'>червоних каменів</span>. Три удари завершують гру.",i4:"Кожні 100 очок з’являється бонус. Далі гра стає швидшою.",i5:"Ім’я необов’язкове. З ім’ям результат буде в таблиці.",ph:"Ім’я для таблиці (необов’язково)",start:"Почати",note:"Таблиця зберігається лише в цьому браузері/телефоні.",hint:"Нахиліть телефон або перетягніть пальцем.",score:"Очки",lives:"Життя",best:"Рекорд",over:"Гру завершено",result:"Результат:",again:"Грати знову",board:"Таблиця",name:"Ім’я",points:"Очки",noname:"Ім’я не введено.",rank:"Рівень:"}
+et:{lang:"Vali keel",title:"Star King",i1:"<b>Star King</b> on lihtne telefonimäng: liigu vasakule ja paremale, kogu tähti ning hoia punastest kividest eemale.",i2:"Kõige täpsem juhtimine on sõrmega lohistades. Telefoni kallutamine töötab rahulikumalt ja sobib aeglasemaks mängimiseks.",i3:"Sul on <span class='red'>3 elu</span>. Iga punane kivi võtab ühe elu. Kolmanda tabamuse järel on mäng läbi.",i4:"Iga 100 punkti järel ilmub boonus: ⚡ eemaldab punased 4 sekundiks, ❤ taastab elud ja 🌈 muudab aluse värvi.",i5:"Soovi korral kirjuta nimi. Siis näed mängu lõpus oma tulemust kohalikus edetabelis.",ph:"Sinu nimi edetabelis (vabatahtlik)",start:"Alusta",note:"Edetabel salvestub ainult sellesse seadmesse. Sisselogimist ei ole.",hint:"Lohista sõrmega või kalluta telefoni.",score:"Punktid",lives:"Elud",best:"Parim",over:"Mäng läbi",result:"Tulemus:",again:"Mängi uuesti",board:"Edetabel",name:"Nimi",points:"Punktid",noname:"Nime ei sisestatud, seega tulemus jäi ainult parima tulemuse alla.",rank:"Tase:"},
+en:{lang:"Choose language",title:"Star King",i1:"<b>Star King</b> on lihtne telefonimäng: liigu vasakule ja paremale, kogu tähti ning hoia punastest kividest eemale.",i2:"Kõige täpsem juhtimine on sõrmega lohistades. Telefoni kallutamine töötab rahulikumalt ja sobib aeglasemaks mängimiseks.",i3:"Sul on <span class='red'>3 elu</span>. Iga punane kivi võtab ühe elu. Kolmanda tabamuse järel on mäng läbi.",i4:"Iga 100 punkti järel ilmub boonus: ⚡ eemaldab punased 4 sekundiks, ❤ taastab elud ja 🌈 muudab aluse värvi.",i5:"Soovi korral kirjuta nimi. Siis näed mängu lõpus oma tulemust kohalikus edetabelis.",ph:"Your leaderboard name (optional)",start:"Start",note:"Edetabel salvestub ainult sellesse seadmesse. Sisselogimist ei ole.",hint:"Lohista sõrmega või kalluta telefoni.",score:"Score",lives:"Lives",best:"Best",over:"Game over",result:"Score:",again:"Play again",board:"Leaderboard",name:"Name",points:"Points",noname:"No name was entered.",rank:"Rank:"},
+uk:{lang:"Виберіть мову",title:"Star King",i1:"<b>Star King</b> on lihtne telefonimäng: liigu vasakule ja paremale, kogu tähti ning hoia punastest kividest eemale.",i2:"Kõige täpsem juhtimine on sõrmega lohistades. Telefoni kallutamine töötab rahulikumalt ja sobib aeglasemaks mängimiseks.",i3:"Sul on <span class='red'>3 elu</span>. Iga punane kivi võtab ühe elu. Kolmanda tabamuse järel on mäng läbi.",i4:"Iga 100 punkti järel ilmub boonus: ⚡ eemaldab punased 4 sekundiks, ❤ taastab elud ja 🌈 muudab aluse värvi.",i5:"Soovi korral kirjuta nimi. Siis näed mängu lõpus oma tulemust kohalikus edetabelis.",ph:"Ім’я для таблиці (необов’язково)",start:"Почати",note:"Edetabel salvestub ainult sellesse seadmesse. Sisselogimist ei ole.",hint:"Lohista sõrmega või kalluta telefoni.",score:"Очки",lives:"Життя",best:"Рекорд",over:"Гру завершено",result:"Результат:",again:"Грати знову",board:"Таблиця",name:"Ім’я",points:"Очки",noname:"Ім’я не введено.",rank:"Рівень:"}
 };
 ["bg","es","cs","da","de","el","fr","ga","hr","it","lv","lt","hu","mt","nl","pl","pt","ro","sk","sl","fi","sv"].forEach(k=>{if(!I18N[k])I18N[k]=I18N.en});
 
@@ -131,7 +131,7 @@ let items=[],particles=[],powerups=[],floatTexts=[],levelRings=[];
 let spawnT=0,speed=1.8,tiltX=0,hasTilt=false,touching=false,audioCtx=null;
 let nextPowerScore=100,redClearTimer=0,bonusText="",bonusTextTimer=0,lastRank="";
 const playerColors=["#2e9fdb","#8e24aa","#2e9f5b","#fb8c00","#ec407a","#fdd835","#7e57c2","#00acc1","#d4af37","#e53935"];
-const ranks=[["Õpipoiss",0,50],["Algaja",50,100],["Koguja",100,175],["Kiire käsi",175,275],["Tähekütt",275,400],["Kaldeäss",400,550],["Välgupüüdja",550,750],["Meister",750,1000],["Legend",1000,1300],["Kaldekuningas",1300,999999]];
+const ranks=[["Õpipoiss",0,50],["Algaja",50,100],["Koguja",100,175],["Kiire käsi",175,275],["Tähekütt",275,400],["Tähelkõndija",400,550],["Välgupüüdja",550,750],["Meister",750,1000],["Legend",1000,1300],["Tähekuningas",1300,999999]];
 
 function getRank(){for(const r of ranks){if(score>=r[1]&&score<r[2])return r}return ranks[0]}
 function applyLanguage(lang){

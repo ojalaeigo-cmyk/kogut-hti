@@ -1,7 +1,7 @@
 {
-  "name": "KaldeKoguja STABIILNE TEST PAUSIGA",
-  "short_name": "KaldeKoguja",
-  "description": "Stabiilne testiversioon pausinupuga.",
+  "name": "Star King",
+  "short_name": "Star King",
+  "description": "Lihtne telefonimäng: kogu tähti, väldi punaseid kive ja jõua Tähekuningaks.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
