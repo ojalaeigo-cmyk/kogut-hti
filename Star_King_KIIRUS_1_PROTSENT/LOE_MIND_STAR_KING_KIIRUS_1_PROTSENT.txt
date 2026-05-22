@@ -1,0 +1,10 @@
+STAR KING - KIIRUSE PARANDUS 1%
+
+Muudatus:
+- Esimese leveli kiirus jääb samaks.
+- Iga järgmine level on nüüd ainult 1% kiirem.
+- Avakuva tekstides on 5% muudetud 1% peale.
+- Service worker cache versioon on uuendatud.
+
+GitHubi laadimiseks:
+Lae üles kogu selle kausta sisu, mitte ZIP-faili ennast.
