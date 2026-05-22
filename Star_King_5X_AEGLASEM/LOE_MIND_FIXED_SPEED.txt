@@ -1,0 +1,15 @@
+STAR KING - FIXED SPEED CLEAN
+
+See on parandatud kiiruse versioon.
+
+Kontroll:
+- avakuval peab olema tekst: FIXED SPEED
+- level 1 on baaskiirus
+- iga järgmine level on ainult 1% kiirem
+- score ei kiirenda mängu jooksvalt
+- spawnRate on levelipõhine, mitte score-põhine
+
+Kui avakuval ei ole "FIXED SPEED", siis GitHubis ei ole see fail aktiivne või brauser näitab vana cache'i.
+
+GitHubi laadimiseks:
+Lae üles kogu selle kausta sisu, mitte ZIP-faili ennast.

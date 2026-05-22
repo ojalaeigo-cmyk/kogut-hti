@@ -1,0 +1,10 @@
+STAR KING - 5X AEGASEM
+
+See versioon teeb kiiruse päriselt 5 korda aeglasemaks:
+- vana baaskiirus 1.8 -> uus baaskiirus 0.36;
+- vana objektide tekkimise vahe 70 -> uus 350;
+- iga järgmine level on endiselt 1% kiirem;
+- avakuval peab olema nähtav tekst: 5X AEGASEM.
+
+GitHubi laadimiseks:
+Lae üles kogu selle kausta sisu, mitte ZIP-faili ennast.
