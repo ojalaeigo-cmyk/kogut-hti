@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>KaldeKoguja 1.5</title>
+<title>KaldeKoguja STABIILNE TEST PAUSIGA</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#071018">
 <style>
@@ -15,7 +15,7 @@ canvas{width:100vw;height:100vh;max-width:520px;background:#101923;touch-action:
 .box{background:rgba(0,0,0,.42);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:8px;text-align:center;box-shadow:0 6px 20px rgba(0,0,0,.20)}
 #rankBox{position:fixed;top:94px;left:50%;transform:translateX(-50%);width:min(88vw,450px);z-index:5;pointer-events:none;color:white;text-align:center;text-shadow:0 2px 3px #000}
 #rankName{font-size:16px;font-weight:bold;color:#ffd966}.bar{height:8px;background:rgba(255,255,255,.18);border-radius:999px;overflow:hidden;margin-top:5px}.bar>div{height:100%;width:0%;background:linear-gradient(90deg,#8fd7ff,#ffd966);border-radius:999px}
-#quickBtns{position:fixed;top:95px;right:calc(50% - min(47vw,250px));display:flex;gap:6px;z-index:8} .miniBtn{border:1px solid rgba(255,255,255,.22);background:rgba(0,0,0,.42);color:white;border-radius:999px;padding:7px 9px;font-size:13px;font-weight:bold;box-shadow:none;margin:0}#hint{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);width:min(92vw,480px);color:white;text-align:center;background:rgba(0,0,0,.36);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:10px 12px;font-size:14px;line-height:1.3;z-index:5;pointer-events:none}
+#hint{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);width:min(92vw,480px);color:white;text-align:center;background:rgba(0,0,0,.36);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:10px 12px;font-size:14px;line-height:1.3;z-index:5;pointer-events:none}
 .screen{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.80);z-index:20;color:white;text-align:center;padding:22px}
 .panel{width:min(92vw,470px);max-height:88vh;overflow:auto;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.07));border:1px solid rgba(255,255,255,.22);border-radius:26px;padding:26px 20px;box-shadow:0 22px 60px rgba(0,0,0,.45)}
 .panel h1{font-size:36px;margin-bottom:10px;letter-spacing:.3px}.panel p{font-size:15px;line-height:1.38;margin-bottom:12px;opacity:.94}
@@ -24,6 +24,24 @@ input,select{width:100%;border:1px solid rgba(255,255,255,.25);border-radius:16p
 .hidden{display:none!important}.yellow{color:#ffd966}.red{color:#ff9c9c}.green{color:#8cffb1}.blue{color:#8fd7ff}
 table{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px}th,td{padding:7px 6px;border-bottom:1px solid rgba(255,255,255,.16)}th{color:#ffd966}td:nth-child(1){width:34px}td:nth-child(3){text-align:right;font-weight:bold}
 .small{font-size:13px!important;opacity:.75!important}.langLabel{font-size:13px;opacity:.82;text-align:left;margin-top:4px}.bonusLegend{display:grid;grid-template-columns:1fr;gap:6px;text-align:left;margin:12px 0}.legendItem{background:rgba(0,0,0,.26);border:1px solid rgba(255,255,255,.13);border-radius:14px;padding:9px 10px;font-size:14px}
+
+#pauseBtn{
+  position:fixed;
+  top:96px;
+  right:calc(50% - min(47vw,250px));
+  z-index:9;
+  border:1px solid rgba(255,255,255,.24);
+  background:rgba(0,0,0,.48);
+  color:white;
+  border-radius:999px;
+  padding:8px 11px;
+  font-size:16px;
+  font-weight:bold;
+  box-shadow:0 6px 18px rgba(0,0,0,.25);
+  display:none;
+}
+#pauseBtn.visible{display:block}
+
 </style>
 </head>
 <body>
@@ -35,7 +53,7 @@ table{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px}th,td{p
   <div class="box"><span id="bestLabel">Parim</span><br><span id="best" class="green">0</span></div>
 </div>
 <div id="rankBox"><div id="rankName">Õpipoiss</div><div class="bar"><div id="rankProgress"></div></div></div>
-<div id="quickBtns"><button class="miniBtn" id="pauseBtn" type="button">⏸</button><button class="miniBtn" id="soundBtn" type="button">🔊</button><button class="miniBtn" id="vibeBtn" type="button">📳</button></div>
+<button id="pauseBtn" type="button">⏸</button>
 <div id="hint">Kalluta telefoni või lohista sõrmega.</div>
 
 <div id="start" class="screen">
@@ -67,15 +85,15 @@ table{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px}th,td{p
     <p id="intro5">Nimi on vabatahtlik. Kui kirjutad nime, näidatakse sind mängu lõpus edetabelis.</p>
     <input id="playerName" maxlength="18" autocomplete="nickname" placeholder="Sinu nimi edetabelis (vabatahtlik)">
     <button id="startBtn" type="button">Alusta</button>
-    <p id="smallNote" class="small">Edetabel salvestub ainult selles brauseris / telefonis. Sisselogimist ei ole.</p><p class="small"><b>Versioon 1.5:</b> lisatud paus, heli/vibra lülitid, parem privaatsustekst ja Play-ready PWA struktuur.</p>
+    <p id="smallNote" class="small">Edetabel salvestub ainult selles brauseris / telefonis. Sisselogimist ei ole.</p>
   </div>
 </div>
 
 
 <div id="pauseScreen" class="screen hidden">
   <div class="panel">
-    <h1 id="pauseTitle">Paus</h1>
-    <p id="pauseText">Mäng on peatatud.</p>
+    <h1>Paus</h1>
+    <p>Mäng on peatatud.</p>
     <button id="resumeBtn" type="button">Jätka</button>
   </div>
 </div>
@@ -105,9 +123,8 @@ uk:{lang:"Виберіть мову",title:"Збирач нахилу",i1:"<b>Г
 ["bg","es","cs","da","de","el","fr","ga","hr","it","lv","lt","hu","mt","nl","pl","pt","ro","sk","sl","fi","sv"].forEach(k=>{if(!I18N[k])I18N[k]=I18N.en});
 
 const canvas=document.getElementById("game"),ctx=canvas.getContext("2d"),$=id=>document.getElementById(id);
-let W=360,H=640,S=1,frame=0,running=false;
+let W=360,H=640,S=1,frame=0,running=false,paused=false;
 let score=0,lives=3,best=Number(localStorage.getItem("kaldekoguja_best")||0);
-let paused=false,soundOn=localStorage.getItem("kaldekoguja_sound")!=="0",vibeOn=localStorage.getItem("kaldekoguja_vibe")!=="0";
 let currentName=localStorage.getItem("kaldekoguja_name")||"", currentLang=localStorage.getItem("kaldekoguja_lang")||"et";
 let player={x:180,y:560,w:68,h:32,vx:0,color:"#2e9fdb",targetColor:"#2e9fdb"};
 let items=[],particles=[],powerups=[],floatTexts=[],levelRings=[];
@@ -125,7 +142,7 @@ function applyLanguage(lang){
  $("scoreLabel").textContent=t.score;$("livesLabel").textContent=t.lives;$("bestLabel").textContent=t.best;
  $("overTitle").textContent=t.over;$("resultLabel").textContent=t.result;$("againBtn").textContent=t.again;
  $("boardTitle").textContent=t.board;$("nameTh").textContent=t.name;$("pointsTh").textContent=t.points;$("noNameNote").textContent=t.noname;$("finalRankLabel").textContent=t.rank;
- $("languageSelect").value=lang;if($("pauseTitle"))$("pauseTitle").textContent=lang==="et"?"Paus":"Pause";if($("pauseText"))$("pauseText").textContent=lang==="et"?"Mäng on peatatud.":"Game is paused.";if($("resumeBtn"))$("resumeBtn").textContent=lang==="et"?"Jätka":"Resume";
+ $("languageSelect").value=lang;
 }
 $("best").textContent=best;$("playerName").value=currentName;applyLanguage(currentLang);
 $("languageSelect").addEventListener("change",e=>applyLanguage(e.target.value));
@@ -137,21 +154,19 @@ function renderBoard(board){const body=$("leaderboardBody");body.innerHTML="";bo
 function resize(){const cw=Math.min(innerWidth,520),ch=innerHeight;canvas.style.width=cw+"px";canvas.style.height=ch+"px";canvas.width=cw;canvas.height=ch;ctx.setTransform(1,0,0,1,0,0);W=cw;H=ch;S=W/360;player.y=H-96;player.x=Math.max(player.w*S/2,Math.min(W-player.w*S/2,player.x))}
 addEventListener("resize",resize);resize();
 function initAudio(){try{const Ctx=window.AudioContext||window.webkitAudioContext;if(!Ctx)return;if(!audioCtx)audioCtx=new Ctx();if(audioCtx.state==="suspended")audioCtx.resume()}catch(e){}}
-function tone(f1,f2,d=.10,v=.04,type="sine"){try{if(!soundOn||!audioCtx)return;const n=audioCtx.currentTime,o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=type;o.frequency.setValueAtTime(f1,n);o.frequency.exponentialRampToValueAtTime(Math.max(40,f2),n+d);g.gain.setValueAtTime(.0001,n);g.gain.exponentialRampToValueAtTime(v,n+.015);g.gain.exponentialRampToValueAtTime(.0001,n+d);o.connect(g);g.connect(audioCtx.destination);o.start(n);o.stop(n+d+.03)}catch(e){}}
+function tone(f1,f2,d=.10,v=.04,type="sine"){try{if(!audioCtx)return;const n=audioCtx.currentTime,o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=type;o.frequency.setValueAtTime(f1,n);o.frequency.exponentialRampToValueAtTime(Math.max(40,f2),n+d);g.gain.setValueAtTime(.0001,n);g.gain.exponentialRampToValueAtTime(v,n+.015);g.gain.exponentialRampToValueAtTime(.0001,n+d);o.connect(g);g.connect(audioCtx.destination);o.start(n);o.stop(n+d+.03)}catch(e){}}
 function good(){tone(520,840,.12,.05)}function bad(){tone(160,80,.15,.06,"triangle")}function bonusSound(){tone(420,900,.16,.065);setTimeout(()=>tone(650,1150,.14,.05),90)}function rankSound(){tone(500,1000,.12,.055);setTimeout(()=>tone(700,1200,.12,.045),80)}
 function rand(a,b){return Math.random()*(b-a)+a}
-function vibrate(pattern){if(vibeOn&&navigator.vibrate)navigator.vibrate(pattern)}
-
 async function enableTilt(){try{if(typeof DeviceOrientationEvent!=="undefined"&&typeof DeviceOrientationEvent.requestPermission==="function"){const res=await DeviceOrientationEvent.requestPermission();if(res!=="granted")return}window.addEventListener("deviceorientation",e=>{if(typeof e.gamma==="number"){tiltX=Math.max(-1,Math.min(1,e.gamma/28));hasTilt=true}})}catch(e){}}
-function startGame(){initAudio();enableTilt();currentName=cleanName($("playerName").value);if(currentName)localStorage.setItem("kaldekoguja_name",currentName);else localStorage.removeItem("kaldekoguja_name");running=true;paused=false;score=0;lives=3;speed=1.8;spawnT=0;items=[];particles=[];powerups=[];levelRings=[];floatTexts=[];levelRings=[];nextPowerScore=100;redClearTimer=0;bonusText="";bonusTextTimer=0;lastRank="Õpipoiss";player.x=W/2;player.vx=0;player.color="#2e9fdb";$("score").textContent=score;$("lives").textContent=lives;$("start").classList.add("hidden");$("over").classList.add("hidden");$("pauseScreen").classList.add("hidden");updateQuickButtons();$("pauseScreen").classList.add("hidden");updateQuickButtons();updateRankHud()}
-function gameOver(){running=false;if(score>best){best=score;localStorage.setItem("kaldekoguja_best",best);$("best").textContent=best}$("finalScore").textContent=score;$("finalRank").textContent=getRank()[0];if(currentName){renderBoard(addToBoard(currentName,score)||getBoard());$("leaderboardWrap").classList.remove("hidden");$("noNameNote").classList.add("hidden")}else{$("leaderboardWrap").classList.add("hidden");$("noNameNote").classList.remove("hidden")}$("pauseScreen").classList.add("hidden");paused=false;$("over").classList.remove("hidden")}
+function startGame(){initAudio();enableTilt();currentName=cleanName($("playerName").value);if(currentName)localStorage.setItem("kaldekoguja_name",currentName);else localStorage.removeItem("kaldekoguja_name");running=true;paused=false;score=0;lives=3;speed=1.8;spawnT=0;items=[];particles=[];powerups=[];levelRings=[];floatTexts=[];levelRings=[];nextPowerScore=100;redClearTimer=0;bonusText="";bonusTextTimer=0;lastRank="Õpipoiss";player.x=W/2;player.vx=0;player.color="#2e9fdb";$("score").textContent=score;$("lives").textContent=lives;$("start").classList.add("hidden");$("pauseBtn").classList.add("visible");$("over").classList.add("hidden");updateRankHud()}
+function gameOver(){running=false;if(score>best){best=score;localStorage.setItem("kaldekoguja_best",best);$("best").textContent=best}$("finalScore").textContent=score;$("finalRank").textContent=getRank()[0];if(currentName){renderBoard(addToBoard(currentName,score)||getBoard());$("leaderboardWrap").classList.remove("hidden");$("noNameNote").classList.add("hidden")}else{$("leaderboardWrap").classList.add("hidden");$("noNameNote").classList.remove("hidden")}$("pauseBtn").classList.remove("visible");$("pauseScreen").classList.add("hidden");paused=false;$("over").classList.remove("hidden")}
 function difficulty(){return 1+Math.floor(score/35)*0.065}
 function spawn(){const d=difficulty(), extra=Math.random()<Math.min(.24,score/1050);for(let n=0;n<(extra?2:1);n++){const goodItem=redClearTimer>0 ? true : Math.random()>(.30+Math.min(.13,score/850));items.push({x:rand(28*S,W-28*S),y:-30*S-rand(0,60)*S,r:goodItem?12*S:15*S,type:goodItem?"star":"rock",vy:(speed+rand(0,0.85))*S*d,spin:rand(0,Math.PI*2)})}}
 function spawnPowerup(){const type=["clear","heal","color"][Math.floor(Math.random()*3)];powerups.push({x:rand(38*S,W-38*S),y:-40*S,r:20*S,vy:Math.max(2.05*S,speed*.82),spin:0,pulse:0,type})}
 function hitCircleRect(c,r){const x=Math.max(r.x-r.w/2,Math.min(r.x+r.w/2,c.x)),y=Math.max(r.y-r.h/2,Math.min(r.y+r.h/2,c.y)),dx=c.x-x,dy=c.y-y;return dx*dx+dy*dy<c.r*c.r}
 function boom(x,y,ok){for(let i=0;i<14;i++)particles.push({x,y,vx:rand(-2.6,2.6)*S,vy:rand(-2.6,2.6)*S,life:24,r:rand(2,4.6)*S,good:ok})}
 function setBonusText(t){bonusText=t;bonusTextTimer=240}
-function activatePowerup(p){bonusSound();vibrate([28,30,28]);if(p.type==="clear"){items=items.filter(i=>i.type!=="rock");redClearTimer=240;setBonusText(currentLang==="et"?"⚡ Punased kaovad 4 sekundiks":"⚡ Red objects vanish for 4 seconds");}else if(p.type==="heal"){lives=3;$("lives").textContent=lives;setBonusText(currentLang==="et"?"💚 Elud taastusid":"💚 Lives restored");}else{let c=player.color;for(let i=0;i<10&&c===player.color;i++)c=playerColors[Math.floor(Math.random()*playerColors.length)];player.color=c;setBonusText(currentLang==="et"?"🌈 Alus muutis värvi":"🌈 Base changed color");}boom(p.x,p.y,true)}
+function activatePowerup(p){bonusSound();if(navigator.vibrate)navigator.vibrate([28,30,28]);if(p.type==="clear"){items=items.filter(i=>i.type!=="rock");redClearTimer=240;setBonusText(currentLang==="et"?"⚡ Punased kaovad 4 sekundiks":"⚡ Red objects vanish for 4 seconds");}else if(p.type==="heal"){lives=3;$("lives").textContent=lives;setBonusText(currentLang==="et"?"💚 Elud taastusid":"💚 Lives restored");}else{let c=player.color;for(let i=0;i<10&&c===player.color;i++)c=playerColors[Math.floor(Math.random()*playerColors.length)];player.color=c;setBonusText(currentLang==="et"?"🌈 Alus muutis värvi":"🌈 Base changed color");}boom(p.x,p.y,true)}
 
 function spawnLevelRing(label){
   levelRings.push({
@@ -166,7 +181,7 @@ function spawnLevelRing(label){
 }
 
 function updateRankHud(){const r=getRank();$("rankName").textContent=r[0];let p=r[2]>999999?1:(score-r[1])/(r[2]-r[1]);$("rankProgress").style.width=Math.max(0,Math.min(100,p*100))+"%";if(r[0]!==lastRank&&running){lastRank=r[0];rankSound();spawnLevelRing(r[0]);floatTexts.push({x:W/2,y:H*.23,text:r[0],life:120,big:true})}}
-function update(){if(!running||paused)return;speed=Math.min(5.45,1.8+score*.0106);if(redClearTimer>0){redClearTimer--;items=items.filter(i=>i.type!=="rock");}if(bonusTextTimer>0)bonusTextTimer--;if(hasTilt&&!touching){player.vx=tiltX*8*S;player.x+=player.vx}else{player.x+=player.vx;player.vx*=.86}player.x=Math.max(player.w*S/2,Math.min(W-player.w*S/2,player.x));spawnT++;const spawnRate=Math.max(27,70-score*.095);if(spawnT>spawnRate){spawnT=0;spawn()}if(score>=nextPowerScore){spawnPowerup();nextPowerScore+=100}items.forEach(i=>{i.y+=i.vy;i.spin+=.06});powerups.forEach(p=>{p.y+=p.vy;p.spin+=.08;p.pulse+=.12});particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.life--});floatTexts.forEach(f=>{f.y-=.25*S;f.life--});levelRings.forEach(l=>{l.life--;l.spin+=.08;l.pulse+=.12;});const box={x:player.x,y:player.y,w:player.w*S,h:player.h*S};for(const p of powerups){if(!p.dead&&hitCircleRect(p,box)){p.dead=true;activatePowerup(p)}}for(const i of items){if(i.dead)continue;if(hitCircleRect(i,box)){i.dead=true;if(i.type==="star"){score++;$("score").textContent=score;floatTexts.push({x:i.x,y:i.y,text:"+1",life:35});boom(i.x,i.y,true);good();vibrate(15);updateRankHud()}else{lives--;$("lives").textContent=lives;boom(i.x,i.y,false);bad();vibrate([50,25,50]);if(lives<=0){gameOver();return}}}}items=items.filter(i=>!i.dead&&i.y<H+55);powerups=powerups.filter(p=>!p.dead&&p.y<H+65);particles=particles.filter(p=>p.life>0);levelRings=levelRings.filter(l=>l.life>0);floatTexts=floatTexts.filter(f=>f.life>0);levelRings=levelRings.filter(l=>l.life>0)}
+function update(){if(!running||paused)return;speed=Math.min(5.45,1.8+score*.0106);if(redClearTimer>0){redClearTimer--;items=items.filter(i=>i.type!=="rock");}if(bonusTextTimer>0)bonusTextTimer--;if(hasTilt&&!touching){player.vx=tiltX*8*S;player.x+=player.vx}else{player.x+=player.vx;player.vx*=.86}player.x=Math.max(player.w*S/2,Math.min(W-player.w*S/2,player.x));spawnT++;const spawnRate=Math.max(27,70-score*.095);if(spawnT>spawnRate){spawnT=0;spawn()}if(score>=nextPowerScore){spawnPowerup();nextPowerScore+=100}items.forEach(i=>{i.y+=i.vy;i.spin+=.06});powerups.forEach(p=>{p.y+=p.vy;p.spin+=.08;p.pulse+=.12});particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.life--});floatTexts.forEach(f=>{f.y-=.25*S;f.life--});levelRings.forEach(l=>{l.life--;l.spin+=.08;l.pulse+=.12;});const box={x:player.x,y:player.y,w:player.w*S,h:player.h*S};for(const p of powerups){if(!p.dead&&hitCircleRect(p,box)){p.dead=true;activatePowerup(p)}}for(const i of items){if(i.dead)continue;if(hitCircleRect(i,box)){i.dead=true;if(i.type==="star"){score++;$("score").textContent=score;floatTexts.push({x:i.x,y:i.y,text:"+1",life:35});boom(i.x,i.y,true);good();if(navigator.vibrate)navigator.vibrate(15);updateRankHud()}else{lives--;$("lives").textContent=lives;boom(i.x,i.y,false);bad();if(navigator.vibrate)navigator.vibrate([50,25,50]);if(lives<=0){gameOver();return}}}}items=items.filter(i=>!i.dead&&i.y<H+55);powerups=powerups.filter(p=>!p.dead&&p.y<H+65);particles=particles.filter(p=>p.life>0);levelRings=levelRings.filter(l=>l.life>0);floatTexts=floatTexts.filter(f=>f.life>0);levelRings=levelRings.filter(l=>l.life>0)}
 function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath()}
 function drawBg(){const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,"#1b3d5d");g.addColorStop(.55,"#102132");g.addColorStop(1,"#071018");ctx.fillStyle=g;ctx.fillRect(0,0,W,H);if(redClearTimer>0){ctx.fillStyle="rgba(120,220,255,.13)";ctx.fillRect(0,0,W,H)}for(let i=0;i<30;i++){const x=(i*73+frame*.16)%W,y=80+(i*91)%Math.max(120,H-180);ctx.fillStyle=i%5===0?"rgba(255,217,102,.16)":"rgba(255,255,255,.08)";ctx.beginPath();ctx.arc(x,y,1.5+(i%3),0,Math.PI*2);ctx.fill()}}
 function drawPlayer(){const w=player.w*S,h=player.h*S,x=player.x,y=player.y;ctx.save();ctx.translate(x,y);ctx.fillStyle="rgba(0,0,0,.35)";ctx.beginPath();ctx.ellipse(0,h*.55,w*.6,h*.22,0,0,Math.PI*2);ctx.fill();ctx.fillStyle=player.color;rr(-w/2,-h/2,w,h,14*S);ctx.fill();ctx.fillStyle="rgba(255,255,255,.46)";rr(-w*.32,-h*.38,w*.64,h*.30,9*S);ctx.fill();ctx.fillStyle="#0b1118";ctx.fillRect(-w*.45,h*.10,w*.18,h*.30);ctx.fillRect(w*.27,h*.10,w*.18,h*.30);ctx.fillStyle="#ffd966";ctx.beginPath();ctx.arc(-w*.24,-h*.28,3.6*S,0,Math.PI*2);ctx.arc(w*.24,-h*.28,3.6*S,0,Math.PI*2);ctx.fill();ctx.restore()}
@@ -223,30 +238,15 @@ canvas.addEventListener("mousemove",e=>{if(touching)player.x=e.clientX-(innerWid
 canvas.addEventListener("mouseup",()=>touching=false);canvas.addEventListener("mouseleave",()=>touching=false);
 window.addEventListener("keydown",e=>{if(e.key==="ArrowLeft"||e.key.toLowerCase()==="a")player.vx=-7*S;if(e.key==="ArrowRight"||e.key.toLowerCase()==="d")player.vx=7*S;if(e.key==="Enter"&&!running)startGame();if(e.key==="Escape"&&running)togglePause()});
 
-function updateQuickButtons(){
-  if($("soundBtn"))$("soundBtn").textContent=soundOn?"🔊":"🔇";
-  if($("vibeBtn"))$("vibeBtn").textContent=vibeOn?"📳":"🚫";
-  if($("pauseBtn"))$("pauseBtn").textContent=paused?"▶":"⏸";
-}
 function togglePause(){
   if(!running)return;
   paused=!paused;
   $("pauseScreen").classList.toggle("hidden",!paused);
-  updateQuickButtons();
-}
-function toggleSound(){
-  soundOn=!soundOn;
-  localStorage.setItem("kaldekoguja_sound",soundOn?"1":"0");
-  updateQuickButtons();
-}
-function toggleVibe(){
-  vibeOn=!vibeOn;
-  localStorage.setItem("kaldekoguja_vibe",vibeOn?"1":"0");
-  updateQuickButtons();
+  $("pauseBtn").textContent=paused?"▶":"⏸";
 }
 
 function bindStart(id){const el=$(id),fn=e=>{if(e)e.preventDefault();startGame()};el.addEventListener("click",fn);el.addEventListener("touchstart",fn,{passive:false});el.addEventListener("pointerdown",fn)}
-bindStart("startBtn");bindStart("againBtn");$("pauseBtn").addEventListener("click",togglePause);$("resumeBtn").addEventListener("click",togglePause);$("soundBtn").addEventListener("click",toggleSound);$("vibeBtn").addEventListener("click",toggleVibe);updateQuickButtons();
+bindStart("startBtn");bindStart("againBtn");$("pauseBtn").addEventListener("click",togglePause);$("resumeBtn").addEventListener("click",togglePause);
 if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("service-worker.js").catch(()=>{}))}
 updateRankHud();loop();
 })();

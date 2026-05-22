@@ -1,7 +1,7 @@
 {
-  "name": "KaldeKoguja 1.5",
+  "name": "KaldeKoguja STABIILNE TEST PAUSIGA",
   "short_name": "KaldeKoguja",
-  "description": "Telefoniga kallutamise mäng: 10 taset, boonused, paus, heli ja vibra lülitid.",
+  "description": "Stabiilne testiversioon pausinupuga.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
