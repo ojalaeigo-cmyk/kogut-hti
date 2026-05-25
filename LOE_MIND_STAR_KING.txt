@@ -1,13 +1,13 @@
-STAR KING - STABIILNE TEST
+KALDEKOGUJA STABIILNE TEST PAUSIGA
 
-Muudatused:
-- mängu nimi on nüüd Star King;
-- level 6 nimi on Tähelkõndija;
-- level 10 nimi on Tähekuningas;
-- algusekraani tekst on lühem ja selgem;
-- tasemeid on 10;
-- alles jäid põhimehaanika, boonused ja leveliring;
-- kui aluseks oli pausiga versioon, jäi ka pausi nupp alles.
+Lisatud:
+- pausi nupp mängu ajal üleval paremal;
+- vajuta ⏸, mäng peatub;
+- vajuta Jätka või ▶, mäng jätkub;
+- arvutis töötab ka ESC klahv.
+
+Pausi nupp ei ole algusekraanil nähtav.
+Game Over ajal peidetakse pausi nupp ära.
 
 GitHubi laadimiseks:
 Lae üles kogu selle kausta sisu, mitte ZIP-faili ennast.

@@ -1,29 +1,8 @@
-KALDEKOGUJA_STABIILNE_TEST
+STAR KING - AVAKUVA PUHASTUS
 
-See on üks selge testipakk.
+Eemaldatud avakuvalt:
+- "Siis näed mängu lõpus oma tulemuste edetabelit."
+- "Testversioon: Star King ..."
+- "Edetabel salvestub ainult ..."
 
-Testi ainult seda versiooni.
-
-Sisu:
-- index.html
-- manifest.json
-- service-worker.js
-- icons/
-- _redirects
-- juhisfail
-
-GitHubi laadimiseks:
-1. Paki see ZIP lahti.
-2. Ava lahti pakitud kaust.
-3. Lae GitHubi üles kogu kausta sisu, mitte ZIP-faili ennast.
-4. Vajuta Commit changes.
-5. Oota 1-3 minutit.
-6. Ava telefonis GitHub Pagesi link.
-
-Mida testida:
-- mängu kiirus;
-- kas punased kaovad välgu boonusega;
-- kas elud taastuvad südame boonusega;
-- kas alus muudab värvi vikerkaare boonusega;
-- kas taseme muutumisel tuleb ümmargune ring;
-- kas kolm tabamust lõpetab mängu.
+Mänguloogikat ei muudetud.

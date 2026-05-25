@@ -1,18 +1,13 @@
-STAR KING - UUS LOOGIKA
-
-Aluseks võetud: Star_King_STABIILNE_TEST
+STAR KING - STABIILNE TEST
 
 Muudatused:
-1. Level 1 on tavakiirusel.
-2. Iga järgmine level on 5% kiirem.
-3. Viimased kolm levelit on veel 2% kiiremad.
-4. Iga 100 punkti järel ilmub neutraalne boonuskast.
-5. Boonuskasti kogumisel valib mäng juhuslikult ühe:
-   - ⚡ punased kaovad 4 sekundiks
-   - ❤ elud taastuvad
-   - 🌈 alus muudab värvi
-6. Sõrmega juhtimine ja telefoni kallutamine kasutavad sama sujuvat liikumisloogikat.
-7. Avakuva on eestikeelsem ja selgem.
+- mängu nimi on nüüd Star King;
+- level 6 nimi on Tähelkõndija;
+- level 10 nimi on Tähekuningas;
+- algusekraani tekst on lühem ja selgem;
+- tasemeid on 10;
+- alles jäid põhimehaanika, boonused ja leveliring;
+- kui aluseks oli pausiga versioon, jäi ka pausi nupp alles.
 
 GitHubi laadimiseks:
 Lae üles kogu selle kausta sisu, mitte ZIP-faili ennast.
