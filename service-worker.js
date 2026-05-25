@@ -1,23 +1,8 @@
-const CACHE='star-king-eu-final-root-upload-v4';
-const ASSETS=['./manifest.json','./icons/icon-192.png','./icons/icon-512.png'];
-
-self.addEventListener('install',e=>{
-  self.skipWaiting();
-  e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)));
+const CACHE='star-king-force-english-v1';
+self.addEventListener('install', e => self.skipWaiting());
+self.addEventListener('activate', e => {
+  e.waitUntil(caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k)))).then(() => self.clients.claim()));
 });
-
-self.addEventListener('activate',e=>{
-  e.waitUntil(
-    caches.keys()
-      .then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k))))
-      .then(()=>self.clients.claim())
-  );
-});
-
-self.addEventListener('fetch',e=>{
-  if(e.request.mode==='navigate' || e.request.url.endsWith('/index.html')){
-    e.respondWith(fetch(e.request).catch(()=>caches.match('./index.html')));
-    return;
-  }
-  e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)));
+self.addEventListener('fetch', e => {
+  e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
 });

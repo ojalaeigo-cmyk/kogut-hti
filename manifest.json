@@ -1,8 +1,8 @@
 {
   "name": "Star King",
   "short_name": "Star King",
-  "description": "Star King with full EU language selection. Default language is English.",
-  "start_url": "./",
+  "description": "Star King. English opens by default.",
+  "start_url": "./?forceenglish=1",
   "scope": "./",
   "display": "standalone",
   "background_color": "#071018",

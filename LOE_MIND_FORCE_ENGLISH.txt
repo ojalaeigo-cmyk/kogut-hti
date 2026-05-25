@@ -1,0 +1,16 @@
+STAR KING - FORCE ENGLISH ROOT UPLOAD
+
+See pakk sunnib avakuva inglise keeleks:
+- currentLang = "en"
+- vana salvestatud keel kustutatakse localStorage'ist
+- avakuval on kontrollrida: BUILD CHECK: ENGLISH DEFAULT ACTIVE
+- service-worker ei hoia enam vana index.html faili kinni
+
+Lae GitHubi JUURKAUSTA selle kausta SEES olevad failid:
+index.html
+manifest.json
+service-worker.js
+icons/
+_redirects
+
+Ära lae üles ZIP-faili ega tervet kausta.
