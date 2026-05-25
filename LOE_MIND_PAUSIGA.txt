@@ -1,11 +1,12 @@
-STAR KING - EU LANGUAGES
+STAR KING - EU LANGUAGES FINAL
 
-Muudatused:
-- Avakuva ja mängu tekstid on tõlgitud EL ametlikesse keeltesse.
-- Vaikimisi keel programmi käivitamisel on English.
+Kontroll:
+- Vaikimisi avab mäng inglise keeles.
+- Keelevalikus on EL ametlikud keeled.
 - Vene ja valgevene keelt/riiki ei ole valikus.
-- Bulgaaria on märgitud kujul: Bulgaaria / Български.
-- Mängu settingud ja mänguloogika jäid samaks.
+- Bulgaaria on märgitud: Bulgaaria / Български.
+- Ka boonuste tekstid on keelepõhised.
+- Mänguloogikat ei muudetud.
 
 GitHubi laadimiseks:
 Lae üles kogu selle kausta sisu, mitte ZIP-faili ennast.
