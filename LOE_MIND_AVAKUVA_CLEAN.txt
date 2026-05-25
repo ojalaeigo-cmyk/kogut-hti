@@ -1,0 +1,8 @@
+STAR KING - AVAKUVA PUHASTUS
+
+Eemaldatud avakuvalt:
+- "Siis näed mängu lõpus oma tulemuste edetabelit."
+- "Testversioon: Star King ..."
+- "Edetabel salvestub ainult ..."
+
+Mänguloogikat ei muudetud.
