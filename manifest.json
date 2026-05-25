@@ -1,18 +1,23 @@
-STAR KING - UUS LOOGIKA
-
-Aluseks võetud: Star_King_STABIILNE_TEST
-
-Muudatused:
-1. Level 1 on tavakiirusel.
-2. Iga järgmine level on 5% kiirem.
-3. Viimased kolm levelit on veel 2% kiiremad.
-4. Iga 100 punkti järel ilmub neutraalne boonuskast.
-5. Boonuskasti kogumisel valib mäng juhuslikult ühe:
-   - ⚡ punased kaovad 4 sekundiks
-   - ❤ elud taastuvad
-   - 🌈 alus muudab värvi
-6. Sõrmega juhtimine ja telefoni kallutamine kasutavad sama sujuvat liikumisloogikat.
-7. Avakuva on eestikeelsem ja selgem.
-
-GitHubi laadimiseks:
-Lae üles kogu selle kausta sisu, mitte ZIP-faili ennast.
+{
+  "name": "Star King",
+  "short_name": "Star King",
+  "description": "Star King with full EU language selection. Default language is English.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#071018",
+  "theme_color": "#071018",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

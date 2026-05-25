@@ -1,0 +1,20 @@
+STAR KING EU LANG FINAL - ROOT UPLOAD
+
+Seda pakki ei tohi GitHubi laadida kaustana.
+
+Tee nii:
+1. Paki ZIP lahti.
+2. Ava lahti pakitud kaust.
+3. Lae GitHubi repo juurkausta üles selle kausta SEES OLEVAD failid:
+   - index.html
+   - manifest.json
+   - service-worker.js
+   - icons/
+   - _redirects
+4. Ära lae üles ZIP-faili.
+5. Ära lae üles tervet kausta.
+
+Kontroll:
+- Avakuval peab tekst olema inglise keeles.
+- Avakuval peab olema rida: "EU language build: English opens by default."
+- Kui seda rida ei ole, siis GitHub näitab vana index.html faili.

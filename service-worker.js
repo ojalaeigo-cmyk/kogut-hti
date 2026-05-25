@@ -1,34 +1,23 @@
-TESTI AINULT SEDA VERSIOONI
+const CACHE='star-king-eu-final-root-upload-v4';
+const ASSETS=['./manifest.json','./icons/icon-192.png','./icons/icon-512.png'];
 
-Versioon: KaldeKoguja 1.4
+self.addEventListener('install',e=>{
+  self.skipWaiting();
+  e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)));
+});
 
-Miks see versioon:
-- 1.5 ja 1.6 lisasid liiga palju korraga.
-- 1.4 on parem baas puhtaks mängutestiks.
-- Siin on olemas põhimehaanika, 10 taset, boonused ja leveliringid.
+self.addEventListener('activate',e=>{
+  e.waitUntil(
+    caches.keys()
+      .then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k))))
+      .then(()=>self.clients.claim())
+  );
+});
 
-Ära testi praegu:
-- 1.5
-- 1.6
-
-Testi selles versioonis ainult:
-1. Kas mängu kiirus on õige.
-2. Kas punased kivid kaovad ⚡ boonusega umbes 4 sekundiks.
-3. Kas elud taastuvad ❤ boonusega.
-4. Kas alus muudab värvi 🌈 boonusega.
-5. Kas taseme muutumisel tuleb ümmargune leveliring.
-6. Kas 3 pihta saamist lõpetab mängu.
-7. Kas mäng on telefonis mängitav.
-
-GitHubi laadimiseks:
-- Lae üles kogu selle kausta sisu.
-- Ära lae üles ZIP-faili ennast.
-- Failid:
-  index.html
-  manifest.json
-  service-worker.js
-  icons/
-  _redirects
-
-Testlink pärast GitHubi üleslaadimist:
-https://ojalaeigo-cmyk.github.io/kogut-hti/?test=14
+self.addEventListener('fetch',e=>{
+  if(e.request.mode==='navigate' || e.request.url.endsWith('/index.html')){
+    e.respondWith(fetch(e.request).catch(()=>caches.match('./index.html')));
+    return;
+  }
+  e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)));
+});

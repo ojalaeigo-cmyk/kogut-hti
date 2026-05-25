@@ -1,12 +1,13 @@
-STAR KING - EU LANGUAGES FINAL
+KALDEKOGUJA STABIILNE TEST PAUSIGA
 
-Kontroll:
-- Vaikimisi avab mäng inglise keeles.
-- Keelevalikus on EL ametlikud keeled.
-- Vene ja valgevene keelt/riiki ei ole valikus.
-- Bulgaaria on märgitud: Bulgaaria / Български.
-- Ka boonuste tekstid on keelepõhised.
-- Mänguloogikat ei muudetud.
+Lisatud:
+- pausi nupp mängu ajal üleval paremal;
+- vajuta ⏸, mäng peatub;
+- vajuta Jätka või ▶, mäng jätkub;
+- arvutis töötab ka ESC klahv.
+
+Pausi nupp ei ole algusekraanil nähtav.
+Game Over ajal peidetakse pausi nupp ära.
 
 GitHubi laadimiseks:
 Lae üles kogu selle kausta sisu, mitte ZIP-faili ennast.
