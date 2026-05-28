@@ -1,13 +1,13 @@
 {
-  "name": "Star King",
-  "short_name": "Star King",
-  "description": "Star King with updated difficulty curve: levels 2-6 +5%, levels 7-10 +10%.",
-  "start_url": "./?difficultycurve=1",
+  "name": "LOVE Liina",
+  "short_name": "LOVE Liina",
+  "description": "LOVE Liina: armas tähtede püüdmise mäng.",
+  "start_url": "./?loveliina=1",
   "scope": "./",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#071018",
   "theme_color": "#071018",
-  "orientation": "portrait",
   "icons": [
     {
       "src": "icons/icon-192.png",

@@ -1,432 +1,126 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="et">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>Star King - English Default</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>LOVE Liina</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#071018">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
 html,body{width:100%;height:100%;overflow:hidden;background:#071018;font-family:Arial,sans-serif}
-#wrap{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at top,#203e5d,#071018 70%)}
-canvas{width:100vw;height:100vh;max-width:520px;background:#101923;touch-action:none;-webkit-tap-highlight-color:transparent}
-#hud{position:fixed;top:10px;left:50%;transform:translateX(-50%);width:min(94vw,500px);display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;color:white;font-size:14px;font-weight:bold;text-shadow:0 2px 3px #000;z-index:5;pointer-events:none}
-.box{background:rgba(0,0,0,.42);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:8px;text-align:center;box-shadow:0 6px 20px rgba(0,0,0,.20)}
-#rankBox{position:fixed;top:94px;left:50%;transform:translateX(-50%);width:min(88vw,450px);z-index:5;pointer-events:none;color:white;text-align:center;text-shadow:0 2px 3px #000}
-#rankName{font-size:16px;font-weight:bold;color:#ffd966}.bar{height:8px;background:rgba(255,255,255,.18);border-radius:999px;overflow:hidden;margin-top:5px}.bar>div{height:100%;width:0%;background:linear-gradient(90deg,#8fd7ff,#ffd966);border-radius:999px}
-#hint{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);width:min(92vw,480px);color:white;text-align:center;background:rgba(0,0,0,.36);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:10px 12px;font-size:14px;line-height:1.3;z-index:5;pointer-events:none}
-.screen{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.80);z-index:20;color:white;text-align:center;padding:22px}
-.panel{width:min(92vw,470px);max-height:88vh;overflow:auto;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.07));border:1px solid rgba(255,255,255,.22);border-radius:26px;padding:26px 20px;box-shadow:0 22px 60px rgba(0,0,0,.45)}
-.panel h1{font-size:38px;margin-bottom:8px;letter-spacing:.4px;color:#ffd966;text-shadow:0 3px 12px rgba(0,0,0,.45)}.panel p{font-size:15px;line-height:1.38;margin-bottom:12px;opacity:.94}
-button{border:0;border-radius:999px;padding:15px 28px;font-size:18px;font-weight:bold;background:#fff;color:#111;cursor:pointer;margin-top:4px;box-shadow:0 10px 24px rgba(0,0,0,.25)}
-input,select{width:100%;border:1px solid rgba(255,255,255,.25);border-radius:16px;padding:13px 14px;font-size:17px;background:rgba(255,255,255,.92);color:#111;margin:6px 0 12px 0;text-align:center}
-.hidden{display:none!important}.yellow{color:#ffd966}.red{color:#ff9c9c}.green{color:#8cffb1}.blue{color:#8fd7ff}
-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px}th,td{padding:7px 6px;border-bottom:1px solid rgba(255,255,255,.16)}th{color:#ffd966}td:nth-child(1){width:34px}td:nth-child(3){text-align:right;font-weight:bold}
-.small{font-size:13px!important;opacity:.75!important}.langLabel{font-size:13px;opacity:.82;text-align:left;margin-top:4px}.bonusLegend{display:grid;grid-template-columns:1fr;gap:6px;text-align:left;margin:12px 0}.legendItem{background:rgba(0,0,0,.26);border:1px solid rgba(255,255,255,.13);border-radius:14px;padding:9px 10px;font-size:14px}
-
-#pauseBtn{
-  position:fixed;
-  top:96px;
-  right:calc(50% - min(47vw,250px));
-  z-index:9;
-  border:1px solid rgba(255,255,255,.24);
-  background:rgba(0,0,0,.48);
-  color:white;
-  border-radius:999px;
-  padding:8px 11px;
-  font-size:16px;
-  font-weight:bold;
-  box-shadow:0 6px 18px rgba(0,0,0,.25);
-  display:none;
-}
-#pauseBtn.visible{display:block}
-
+#wrap{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at top,#244869,#071018 70%)}
+canvas{width:100vw;height:100vh;max-width:520px;background:#102033;touch-action:none}
+#hud{position:fixed;top:10px;left:50%;transform:translateX(-50%);width:min(94vw,500px);display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;color:white;font-weight:bold;font-size:13px;text-align:center;text-shadow:0 2px 3px #000;z-index:5;pointer-events:none}
+.box{background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:7px}
+#level{position:fixed;top:82px;left:50%;transform:translateX(-50%);width:min(92vw,480px);color:white;text-align:center;z-index:5;font-weight:bold;text-shadow:0 2px 3px #000;pointer-events:none}
+#lvlName{color:#ffd966}.bar{height:8px;background:rgba(255,255,255,.18);border-radius:99px;overflow:hidden;margin-top:6px}.bar>div{height:100%;width:0;background:linear-gradient(90deg,#8fd7ff,#ffd966)}
+#pauseBtn{position:fixed;top:124px;right:calc(50% - min(47vw,250px));z-index:8;display:none;border:1px solid rgba(255,255,255,.24);background:rgba(0,0,0,.5);color:white;border-radius:999px;padding:8px 11px;font-size:16px;font-weight:bold}
+.visible{display:block!important}.screen{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.82);z-index:20;color:white;text-align:center;padding:22px}
+.panel{width:min(92vw,470px);max-height:88vh;overflow:auto;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.07));border:1px solid rgba(255,255,255,.22);border-radius:26px;padding:24px 18px;box-shadow:0 22px 60px rgba(0,0,0,.45)}
+h1{font-size:38px;color:#ffd966;margin-bottom:8px}.panel p{font-size:14px;line-height:1.35;margin-bottom:9px;opacity:.94}
+.legend{display:grid;gap:6px;text-align:left;margin:10px 0}.legend div{background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.13);border-radius:13px;padding:7px 9px;font-size:13px}
+button{border:0;border-radius:999px;padding:15px 28px;font-size:18px;font-weight:bold;background:#fff;color:#111;cursor:pointer;margin-top:4px}
+.small{font-size:12px!important;opacity:.75!important}.hidden{display:none!important}.yellow{color:#ffd966}.green{color:#8cffb1}.pink{color:#ffb3d9}
 </style>
 </head>
 <body>
 <div id="wrap"><canvas id="game"></canvas></div>
-
 <div id="hud">
-  <div class="box"><span id="scoreLabel">Punktid</span><br><span id="score" class="yellow">0</span></div>
-  <div class="box"><span id="livesLabel">Elud</span><br><span id="lives" class="red">3</span></div>
-  <div class="box"><span id="bestLabel">Parim</span><br><span id="best" class="green">0</span></div>
+  <div class="box">Punktid<br><span id="score" class="yellow">0</span></div>
+  <div class="box">Tähed<br><span id="stars" class="green">0</span></div>
+  <div class="box">Parim<br><span id="best" class="pink">0</span></div>
 </div>
-<div id="rankBox"><div id="rankName">Õpipoiss</div><div class="bar"><div id="rankProgress"></div></div></div>
-<button id="pauseBtn" type="button">⏸</button>
-<div id="hint">Kalluta telefoni või lohista sõrmega.</div>
+<div id="level"><div id="lvlName">LOVE Liina</div><div class="bar"><div id="prog"></div></div></div>
+<button id="pauseBtn">⏸</button>
 
 <div id="start" class="screen">
   <div class="panel">
-    <h1 id="titleText">Star King</h1>
-    <div class="langLabel" id="languageLabel">Choose language</div>
-    <select id="languageSelect">
-      <option value="en" selected>English</option>
-      <option value="bg">Bulgaaria / Български</option>
-      <option value="hr">Hrvatski</option>
-      <option value="cs">Čeština</option>
-      <option value="da">Dansk</option>
-      <option value="nl">Nederlands</option>
-      <option value="et">Eesti</option>
-      <option value="fi">Suomi</option>
-      <option value="fr">Français</option>
-      <option value="de">Deutsch</option>
-      <option value="el">Ελληνικά</option>
-      <option value="hu">Magyar</option>
-      <option value="ga">Gaeilge</option>
-      <option value="it">Italiano</option>
-      <option value="lv">Latviešu</option>
-      <option value="lt">Lietuvių</option>
-      <option value="mt">Malti</option>
-      <option value="pl">Polski</option>
-      <option value="pt">Português</option>
-      <option value="ro">Română</option>
-      <option value="sk">Slovenčina</option>
-      <option value="sl">Slovenščina</option>
-      <option value="es">Español</option>
-      <option value="sv">Svenska</option>
-    </select>
-    <p id="intro1"><b>Star King</b> is a simple mobile game: collect yellow stars and avoid red rocks.</p>
-    <p id="intro2">Controls work the same with finger dragging and phone tilt: the base moves smoothly left and right.</p>
-    <p id="intro3">You have <span class="red">3 lives</span>. Each red rock takes one life. After the third hit, the game is over.</p>
-    <div class="bonusLegend">
-      <div class="legendItem">⭐ <b>Kollane täht</b> — annab punkti.</div>
-      <div class="legendItem">🟥 <b>Punane kivi</b> — võtab ühe elu.</div>
-      <div class="legendItem">🎁 <b>Boonuskast</b> — iga 100 punkti järel juhuslik abi.</div>
+    <h1>LOVE Liina</h1>
+    <p><b>Armas tähemäng.</b> Ainult kollased tähed. Ühtegi punast ega halba asja ei ole.</p>
+    <div class="legend">
+      <div>⭐ Iga täht annab +10 punkti.</div>
+      <div>🎁 Iga 50 püütud tähte annab automaatselt +5000 punkti.</div>
+      <div>💛 Iga 100 püütud tähte näitab: <b>Armastand sind kallis</b></div>
+      <div>✨ Iga 500 püütud tähte näitab: <b>Sa oled mu täht</b></div>
     </div>
-    <p id="intro4">Every 100 points, a glowing bonus box appears. When collected, the game randomly chooses one effect: ⚡ red rocks vanish for 4 seconds, ❤ lives are restored, or 🌈 the base changes color. Difficulty: level 2-6 are 5% harder than the previous level; from level 7 onward each level is 10% harder.<br><br>Difficulty: level 2-6 are 5% harder than the previous level; from level 7 onward each level is 10% harder.</p>
-<input id="playerName" maxlength="18" autocomplete="nickname" placeholder="Sinu nimi edetabelis (vabatahtlik)">
-<p id="euProof" class="small"><b>EU language build:</b> English opens by default.</p>
-    <p id="forceEnglishMarker" class="small" style="color:#8cffb1;font-weight:bold;">BUILD CHECK: ENGLISH DEFAULT ACTIVE</p>
-    
-<p id="screenWakeMarker" class="small" style="color:#8cffb1;font-weight:bold;">SCREEN ALWAYS ON MODE</p>
-<p id="wakeStatus" class="small" style="color:#ffd966;">Screen lock: waiting for Start</p>
-
-    <p id="difficultyMarker" class="small" style="color:#8cffb1;font-weight:bold;">DIFFICULTY CURVE: L2-L6 +5%, L7-L10 +10%</p>
-    <button id="startBtn" type="button">Alusta</button>
-</div>
-</div>
-
-
-<div id="pauseScreen" class="screen hidden">
-  <div class="panel">
-    <h1>Paus</h1>
-    <p>Mäng on peatatud.</p>
-    <button id="resumeBtn" type="button">Jätka</button>
+    <p id="screenWakeMarker" class="small" style="color:#8cffb1;font-weight:bold">SCREEN ALWAYS ON MODE</p>
+    <p id="wakeStatus" class="small" style="color:#ffd966">Ekraanilukk: ootab alustamist</p>
+    <button id="startBtn">Alusta</button>
   </div>
 </div>
 
-<div id="over" class="screen hidden">
-  <div class="panel">
-    <h1 id="overTitle">Mäng läbi</h1>
-    <p><span id="resultLabel">Tulemus:</span> <b><span id="finalScore">0</span></b></p>
-    <p><span id="finalRankLabel">Tase:</span> <b><span id="finalRank">Õpipoiss</span></b></p>
-    <div id="leaderboardWrap" class="hidden">
-      <p><b id="boardTitle">Edetabel</b></p>
-      <table><thead><tr><th>#</th><th id="nameTh">Nimi</th><th id="pointsTh">Punktid</th></tr></thead><tbody id="leaderboardBody"></tbody></table>
-    </div>
-    <p id="noNameNote" class="small hidden">Nime ei sisestatud, seega tulemus jäi ainult parima tulemuse alla.</p>
-    <button id="againBtn" type="button">Mängi uuesti</button>
-  </div>
-</div>
+<div id="pauseScreen" class="screen hidden"><div class="panel"><h1>Paus</h1><p>Mäng on peatatud.</p><button id="resumeBtn">Jätka</button></div></div>
+<div id="over" class="screen hidden"><div class="panel"><h1>Mäng läbi</h1><p>Punktid: <b><span id="finalScore">0</span></b></p><p>Tähed: <b><span id="finalStars">0</span></b></p><button id="againBtn">Mängi uuesti</button></div></div>
 
 <script>
 (function(){
 "use strict";
-const I18N={"en":{"lang":"Choose language","title":"Star King","i1":"<b>Star King</b> is a simple mobile game: collect yellow stars and avoid red rocks.","i2":"Controls work the same with finger dragging and phone tilt: the base moves smoothly left and right.","i3":"You have <span class='red'>3 lives</span>. Each red rock takes one life. After the third hit, the game is over.","i4":"Every 100 points, a glowing bonus box appears. When collected, the game randomly chooses one effect: ⚡ red rocks vanish for 4 seconds, ❤ lives are restored, or 🌈 the base changes color. Difficulty: level 2-6 are 5% harder than the previous level; from level 7 onward each level is 10% harder.","i5":"","ph":"Name for the leaderboard (optional)","start":"Start","note":"","hint":"Drag with your finger or tilt the phone.","score":"Score","lives":"Lives","best":"Best","over":"Game over","result":"Score:","again":"Play again","board":"Leaderboard","name":"Name","points":"Points","noname":"No name was entered.","rank":"Rank:","clear":"⚡ Red rocks vanish for 4 seconds","heal":"❤ Lives restored","color":"🌈 Base changed color","tilt":"Tilt phone or drag with finger"},"et":{"lang":"Vali keel","title":"Star King","i1":"<b>Star King</b> on lihtne telefonimäng: kogu kollaseid tähti ja väldi punaseid kive.","i2":"Juhtimine töötab ühtemoodi nii sõrmega lohistades kui telefoni kallutades: alus liigub sujuvalt vasakule ja paremale.","i3":"Sul on <span class='red'>3 elu</span>. Iga punane kivi võtab ühe elu. Kolmanda tabamuse järel on mäng läbi.","i4":"Iga 100 punkti järel ilmub särav boonuskast. Selle kogumisel valib mäng juhuslikult ühe mõju: ⚡ punased kaovad 4 sekundiks, ❤ elud taastuvad või 🌈 alus muudab värvi. Raskus: 2.–6. tase on eelmisest 5% raskem; alates 7. tasemest on iga järgmine tase 10% raskem.","i5":"","ph":"Nimi edetabelis (vabatahtlik)","start":"Alusta","note":"","hint":"Lohista sõrmega või kalluta telefoni.","score":"Punktid","lives":"Elud","best":"Parim","over":"Mäng läbi","result":"Tulemus:","again":"Mängi uuesti","board":"Edetabel","name":"Nimi","points":"Punktid","noname":"Nime ei sisestatud.","rank":"Tase:","clear":"⚡ Punased kaovad 4 sekundiks","heal":"❤ Elud taastusid","color":"🌈 Alus muutis värvi","tilt":"Kalluta telefoni või lohista sõrmega"},"bg":{"lang":"Изберете език","title":"Star King","i1":"<b>Star King</b> е проста мобилна игра: събирайте жълти звезди и избягвайте червени камъни.","i2":"Управлението работи еднакво с плъзгане с пръст и накланяне на телефона: основата се движи плавно наляво и надясно.","i3":"Имате <span class='red'>3 живота</span>. Всеки червен камък отнема един живот. След третия удар играта приключва.","i4":"На всеки 100 точки се появява светеща бонус кутия. При събиране играта избира случаен ефект: ⚡ червените камъни изчезват за 4 секунди, ❤ животите се възстановяват или 🌈 основата сменя цвета си.","i5":"","ph":"Име за класацията (по избор)","start":"Старт","note":"","hint":"Плъзнете с пръст или наклонете телефона.","score":"Точки","lives":"Животи","best":"Рекорд","over":"Край на играта","result":"Резултат:","again":"Играй отново","board":"Класация","name":"Име","points":"Точки","noname":"Не е въведено име.","rank":"Ниво:","clear":"⚡ Червените камъни изчезват за 4 секунди","heal":"❤ Животите се възстановиха","color":"🌈 Основата смени цвета си","tilt":"Наклонете телефона или плъзнете с пръст"},"hr":{"lang":"Odaberi jezik","title":"Star King","i1":"<b>Star King</b> je jednostavna mobilna igra: skupljaj žute zvijezde i izbjegavaj crveno kamenje.","i2":"Upravljanje radi isto povlačenjem prstom i naginjanjem telefona: podloga se glatko pomiče lijevo i desno.","i3":"Imaš <span class='red'>3 života</span>. Svaki crveni kamen oduzima jedan život. Nakon trećeg pogotka igra je gotova.","i4":"Svakih 100 bodova pojavljuje se sjajna bonus kutija. Kad je pokupiš, igra nasumično bira učinak: ⚡ crveno kamenje nestaje na 4 sekunde, ❤ životi se obnavljaju ili 🌈 podloga mijenja boju.","i5":"","ph":"Ime za ljestvicu (neobavezno)","start":"Start","note":"","hint":"Povuci prstom ili nagni telefon.","score":"Bodovi","lives":"Životi","best":"Najbolje","over":"Kraj igre","result":"Rezultat:","again":"Igraj opet","board":"Ljestvica","name":"Ime","points":"Bodovi","noname":"Ime nije uneseno.","rank":"Razina:","clear":"⚡ Crveno kamenje nestaje na 4 sekunde","heal":"❤ Životi su obnovljeni","color":"🌈 Podloga je promijenila boju","tilt":"Nagni telefon ili povuci prstom"},"cs":{"lang":"Vyberte jazyk","title":"Star King","i1":"<b>Star King</b> je jednoduchá mobilní hra: sbírejte žluté hvězdy a vyhýbejte se červeným kamenům.","i2":"Ovládání funguje stejně tažením prstem i nakláněním telefonu: základna se plynule pohybuje doleva a doprava.","i3":"Máte <span class='red'>3 životy</span>. Každý červený kámen vezme jeden život. Po třetím zásahu hra končí.","i4":"Každých 100 bodů se objeví zářící bonusová krabice. Po sebrání hra náhodně vybere efekt: ⚡ červené kameny zmizí na 4 sekundy, ❤ životy se obnoví nebo 🌈 základna změní barvu.","i5":"","ph":"Jméno do žebříčku (volitelné)","start":"Start","note":"","hint":"Táhněte prstem nebo nakloňte telefon.","score":"Body","lives":"Životy","best":"Nejlepší","over":"Konec hry","result":"Výsledek:","again":"Hrát znovu","board":"Žebříček","name":"Jméno","points":"Body","noname":"Jméno nebylo zadáno.","rank":"Úroveň:","clear":"⚡ Červené kameny zmizí na 4 sekundy","heal":"❤ Životy obnoveny","color":"🌈 Základna změnila barvu","tilt":"Nakloňte telefon nebo táhněte prstem"},"da":{"lang":"Vælg sprog","title":"Star King","i1":"<b>Star King</b> er et enkelt mobilspil: saml gule stjerner og undgå røde sten.","i2":"Styringen fungerer ens med fingertræk og telefonvip: basen bevæger sig jævnt til venstre og højre.","i3":"Du har <span class='red'>3 liv</span>. Hver rød sten tager ét liv. Efter tredje træffer er spillet slut.","i4":"For hver 100 point vises en lysende bonusboks. Når den samles op, vælger spillet tilfældigt en effekt: ⚡ røde sten forsvinder i 4 sekunder, ❤ liv gendannes, eller 🌈 basen skifter farve.","i5":"","ph":"Navn til ranglisten (valgfrit)","start":"Start","note":"","hint":"Træk med fingeren eller vip telefonen.","score":"Point","lives":"Liv","best":"Bedste","over":"Spillet er slut","result":"Resultat:","again":"Spil igen","board":"Rangliste","name":"Navn","points":"Point","noname":"Der blev ikke indtastet et navn.","rank":"Niveau:","clear":"⚡ Røde sten forsvinder i 4 sekunder","heal":"❤ Liv gendannet","color":"🌈 Basen skiftede farve","tilt":"Vip telefonen eller træk med fingeren"},"nl":{"lang":"Kies taal","title":"Star King","i1":"<b>Star King</b> is een eenvoudig mobiel spel: verzamel gele sterren en ontwijk rode stenen.","i2":"De besturing werkt hetzelfde met slepen met je vinger en kantelen van de telefoon: de basis beweegt soepel naar links en rechts.","i3":"Je hebt <span class='red'>3 levens</span>. Elke rode steen kost één leven. Na de derde treffer is het spel voorbij.","i4":"Elke 100 punten verschijnt er een gloeiende bonusdoos. Bij het verzamelen kiest het spel willekeurig een effect: ⚡ rode stenen verdwijnen 4 seconden, ❤ levens worden hersteld of 🌈 de basis verandert van kleur.","i5":"","ph":"Naam voor scorebord (optioneel)","start":"Start","note":"","hint":"Sleep met je vinger of kantel de telefoon.","score":"Score","lives":"Levens","best":"Beste","over":"Spel voorbij","result":"Score:","again":"Opnieuw spelen","board":"Scorebord","name":"Naam","points":"Punten","noname":"Er is geen naam ingevoerd.","rank":"Niveau:","clear":"⚡ Rode stenen verdwijnen 4 seconden","heal":"❤ Levens hersteld","color":"🌈 Basis veranderde van kleur","tilt":"Kantel de telefoon of sleep met je vinger"},"fi":{"lang":"Valitse kieli","title":"Star King","i1":"<b>Star King</b> on yksinkertainen mobiilipeli: kerää keltaisia tähtiä ja väistä punaisia kiviä.","i2":"Ohjaus toimii samalla tavalla sormella vetämällä ja puhelinta kallistamalla: alus liikkuu pehmeästi vasemmalle ja oikealle.","i3":"Sinulla on <span class='red'>3 elämää</span>. Jokainen punainen kivi vie yhden elämän. Kolmannen osuman jälkeen peli päättyy.","i4":"Joka 100 pisteen jälkeen ilmestyy hohtava bonuslaatikko. Kun keräät sen, peli valitsee satunnaisen vaikutuksen: ⚡ punaiset kivet katoavat 4 sekunniksi, ❤ elämät palautuvat tai 🌈 alus vaihtaa väriä.","i5":"","ph":"Nimi tulostaulukkoon (valinnainen)","start":"Aloita","note":"","hint":"Vedä sormella tai kallista puhelinta.","score":"Pisteet","lives":"Elämät","best":"Paras","over":"Peli ohi","result":"Tulos:","again":"Pelaa uudelleen","board":"Tulostaulukko","name":"Nimi","points":"Pisteet","noname":"Nimeä ei annettu.","rank":"Taso:","clear":"⚡ Punaiset kivet katoavat 4 sekunniksi","heal":"❤ Elämät palautuivat","color":"🌈 Alus vaihtoi väriä","tilt":"Kallista puhelinta tai vedä sormella"},"fr":{"lang":"Choisir la langue","title":"Star King","i1":"<b>Star King</b> est un jeu mobile simple : ramassez les étoiles jaunes et évitez les pierres rouges.","i2":"Le contrôle fonctionne de la même manière avec le doigt ou l’inclinaison du téléphone : la base se déplace doucement à gauche et à droite.","i3":"Vous avez <span class='red'>3 vies</span>. Chaque pierre rouge enlève une vie. Après le troisième impact, la partie est terminée.","i4":"Tous les 100 points, une boîte bonus lumineuse apparaît. En la ramassant, le jeu choisit un effet au hasard : ⚡ les pierres rouges disparaissent pendant 4 secondes, ❤ les vies sont restaurées ou 🌈 la base change de couleur.","i5":"","ph":"Nom pour le classement (facultatif)","start":"Démarrer","note":"","hint":"Glissez avec le doigt ou inclinez le téléphone.","score":"Score","lives":"Vies","best":"Meilleur","over":"Partie terminée","result":"Score :","again":"Rejouer","board":"Classement","name":"Nom","points":"Points","noname":"Aucun nom saisi.","rank":"Niveau :","clear":"⚡ Les pierres rouges disparaissent pendant 4 secondes","heal":"❤ Vies restaurées","color":"🌈 La base a changé de couleur","tilt":"Inclinez le téléphone ou glissez avec le doigt"},"de":{"lang":"Sprache wählen","title":"Star King","i1":"<b>Star King</b> ist ein einfaches Handyspiel: Sammle gelbe Sterne und weiche roten Steinen aus.","i2":"Die Steuerung funktioniert mit Fingerziehen und Telefonneigung gleich: Die Basis bewegt sich sanft nach links und rechts.","i3":"Du hast <span class='red'>3 Leben</span>. Jeder rote Stein nimmt ein Leben. Nach dem dritten Treffer ist das Spiel vorbei.","i4":"Alle 100 Punkte erscheint eine leuchtende Bonusbox. Beim Einsammeln wählt das Spiel zufällig einen Effekt: ⚡ rote Steine verschwinden 4 Sekunden lang, ❤ Leben werden wiederhergestellt oder 🌈 die Basis ändert ihre Farbe.","i5":"","ph":"Name für die Rangliste (optional)","start":"Start","note":"","hint":"Mit dem Finger ziehen oder das Telefon neigen.","score":"Punkte","lives":"Leben","best":"Bestwert","over":"Spiel vorbei","result":"Ergebnis:","again":"Nochmal spielen","board":"Rangliste","name":"Name","points":"Punkte","noname":"Es wurde kein Name eingegeben.","rank":"Stufe:","clear":"⚡ Rote Steine verschwinden 4 Sekunden lang","heal":"❤ Leben wiederhergestellt","color":"🌈 Basis hat die Farbe geändert","tilt":"Telefon neigen oder mit dem Finger ziehen"},"el":{"lang":"Επιλογή γλώσσας","title":"Star King","i1":"Το <b>Star King</b> είναι ένα απλό παιχνίδι για κινητό: μαζέψτε κίτρινα αστέρια και αποφύγετε κόκκινες πέτρες.","i2":"Ο έλεγχος λειτουργεί το ίδιο με σύρσιμο δαχτύλου και κλίση του τηλεφώνου: η βάση κινείται ομαλά αριστερά και δεξιά.","i3":"Έχετε <span class='red'>3 ζωές</span>. Κάθε κόκκινη πέτρα αφαιρεί μία ζωή. Μετά το τρίτο χτύπημα, το παιχνίδι τελειώνει.","i4":"Κάθε 100 πόντους εμφανίζεται ένα λαμπερό κουτί μπόνους. Όταν το μαζέψετε, το παιχνίδι επιλέγει τυχαία ένα αποτέλεσμα: ⚡ οι κόκκινες πέτρες εξαφανίζονται για 4 δευτερόλεπτα, ❤ οι ζωές αποκαθίστανται ή 🌈 η βάση αλλάζει χρώμα.","i5":"","ph":"Όνομα για την κατάταξη (προαιρετικό)","start":"Έναρξη","note":"","hint":"Σύρετε με το δάχτυλο ή γείρετε το τηλέφωνο.","score":"Πόντοι","lives":"Ζωές","best":"Καλύτερο","over":"Τέλος παιχνιδιού","result":"Σκορ:","again":"Παίξτε ξανά","board":"Κατάταξη","name":"Όνομα","points":"Πόντοι","noname":"Δεν δόθηκε όνομα.","rank":"Επίπεδο:","clear":"⚡ Οι κόκκινες πέτρες εξαφανίζονται για 4 δευτερόλεπτα","heal":"❤ Οι ζωές αποκαταστάθηκαν","color":"🌈 Η βάση άλλαξε χρώμα","tilt":"Γείρετε το τηλέφωνο ή σύρετε με το δάχτυλο"},"hu":{"lang":"Nyelv választása","title":"Star King","i1":"A <b>Star King</b> egy egyszerű mobiljáték: gyűjts sárga csillagokat és kerüld a piros köveket.","i2":"Az irányítás ugyanúgy működik ujjal húzva és a telefon döntésével: az alap simán mozog balra és jobbra.","i3":"<span class='red'>3 életed</span> van. Minden piros kő egy életet vesz el. A harmadik találat után vége a játéknak.","i4":"Minden 100 pont után megjelenik egy ragyogó bónuszdoboz. Felvételekor a játék véletlenszerű hatást választ: ⚡ a piros kövek 4 másodpercre eltűnnek, ❤ az életek visszatöltődnek, vagy 🌈 az alap színt vált.","i5":"","ph":"Név a ranglistára (opcionális)","start":"Start","note":"","hint":"Húzd ujjal vagy döntsd a telefont.","score":"Pontok","lives":"Életek","best":"Legjobb","over":"Játék vége","result":"Eredmény:","again":"Újra","board":"Ranglista","name":"Név","points":"Pontok","noname":"Nem adtál meg nevet.","rank":"Szint:","clear":"⚡ A piros kövek 4 másodpercre eltűnnek","heal":"❤ Életek visszatöltve","color":"🌈 Az alap színt váltott","tilt":"Döntsd a telefont vagy húzd ujjal"},"ga":{"lang":"Roghnaigh teanga","title":"Star King","i1":"Is cluiche soghluaiste simplí é <b>Star King</b>: bailigh réaltaí buí agus seachain clocha dearga.","i2":"Oibríonn an rialú mar an gcéanna le tarraingt mhéar agus claonadh an fhóin: bogann an bonn go réidh ar chlé agus ar dheis.","i3":"Tá <span class='red'>3 shaol</span> agat. Tógann gach cloch dhearg saol amháin. Tar éis an tríú buille, tá deireadh leis an gcluiche.","i4":"Gach 100 pointe, tagann bosca bónais lonrach. Nuair a bhailítear é, roghnaíonn an cluiche éifeacht randamach: ⚡ imíonn clocha dearga ar feadh 4 shoicind, ❤ cuirtear na saolta ar ais, nó 🌈 athraíonn an bonn dath.","i5":"","ph":"Ainm don chlár ceannais (roghnach)","start":"Tosaigh","note":"","hint":"Tarraing le do mhéar nó claon an fón.","score":"Pointí","lives":"Saolta","best":"Is fearr","over":"Cluiche thart","result":"Scór:","again":"Imir arís","board":"Clár ceannais","name":"Ainm","points":"Pointí","noname":"Níor cuireadh ainm isteach.","rank":"Leibhéal:","clear":"⚡ Imíonn clocha dearga ar feadh 4 shoicind","heal":"❤ Cuireadh na saolta ar ais","color":"🌈 D'athraigh an bonn dath","tilt":"Claon an fón nó tarraing le do mhéar"},"it":{"lang":"Scegli lingua","title":"Star King","i1":"<b>Star King</b> è un semplice gioco mobile: raccogli stelle gialle ed evita le pietre rosse.","i2":"Il controllo funziona allo stesso modo trascinando con il dito o inclinando il telefono: la base si muove fluidamente a sinistra e a destra.","i3":"Hai <span class='red'>3 vite</span>. Ogni pietra rossa toglie una vita. Dopo il terzo colpo, la partita finisce.","i4":"Ogni 100 punti appare una scatola bonus luminosa. Quando la raccogli, il gioco sceglie casualmente un effetto: ⚡ le pietre rosse spariscono per 4 secondi, ❤ le vite vengono ripristinate o 🌈 la base cambia colore.","i5":"","ph":"Nome in classifica (opzionale)","start":"Inizia","note":"","hint":"Trascina con il dito o inclina il telefono.","score":"Punti","lives":"Vite","best":"Migliore","over":"Fine partita","result":"Punteggio:","again":"Gioca di nuovo","board":"Classifica","name":"Nome","points":"Punti","noname":"Nessun nome inserito.","rank":"Livello:","clear":"⚡ Le pietre rosse spariscono per 4 secondi","heal":"❤ Vite ripristinate","color":"🌈 La base ha cambiato colore","tilt":"Inclina il telefono o trascina con il dito"},"lv":{"lang":"Izvēlies valodu","title":"Star King","i1":"<b>Star King</b> ir vienkārša mobilā spēle: vāc dzeltenas zvaigznes un izvairies no sarkaniem akmeņiem.","i2":"Vadība darbojas vienādi gan velkot ar pirkstu, gan sasverot telefonu: pamatne vienmērīgi kustas pa kreisi un pa labi.","i3":"Tev ir <span class='red'>3 dzīvības</span>. Katrs sarkanais akmens atņem vienu dzīvību. Pēc trešā trāpījuma spēle beidzas.","i4":"Ik pēc 100 punktiem parādās mirdzoša bonusa kaste. To savācot, spēle nejauši izvēlas efektu: ⚡ sarkanie akmeņi pazūd uz 4 sekundēm, ❤ dzīvības atjaunojas vai 🌈 pamatne maina krāsu.","i5":"","ph":"Vārds topam (nav obligāts)","start":"Sākt","note":"","hint":"Velc ar pirkstu vai sasver telefonu.","score":"Punkti","lives":"Dzīvības","best":"Labākais","over":"Spēle beigusies","result":"Rezultāts:","again":"Spēlēt vēlreiz","board":"Tops","name":"Vārds","points":"Punkti","noname":"Vārds nav ievadīts.","rank":"Līmenis:","clear":"⚡ Sarkanie akmeņi pazūd uz 4 sekundēm","heal":"❤ Dzīvības atjaunotas","color":"🌈 Pamatne mainīja krāsu","tilt":"Sasver telefonu vai velc ar pirkstu"},"lt":{"lang":"Pasirink kalbą","title":"Star King","i1":"<b>Star King</b> yra paprastas mobilus žaidimas: rink geltonas žvaigždes ir venk raudonų akmenų.","i2":"Valdymas veikia vienodai braukiant pirštu ir pakreipiant telefoną: pagrindas sklandžiai juda į kairę ir į dešinę.","i3":"Turi <span class='red'>3 gyvybes</span>. Kiekvienas raudonas akmuo atima vieną gyvybę. Po trečio smūgio žaidimas baigiasi.","i4":"Kas 100 taškų pasirodo švytinti bonuso dėžutė. Ją paėmus, žaidimas atsitiktinai parenka efektą: ⚡ raudoni akmenys dingsta 4 sekundėms, ❤ gyvybės atsistato arba 🌈 pagrindas pakeičia spalvą.","i5":"","ph":"Vardas reitingui (nebūtina)","start":"Pradėti","note":"","hint":"Brauk pirštu arba pakreipk telefoną.","score":"Taškai","lives":"Gyvybės","best":"Geriausias","over":"Žaidimas baigtas","result":"Rezultatas:","again":"Žaisti dar kartą","board":"Reitingas","name":"Vardas","points":"Taškai","noname":"Vardas neįvestas.","rank":"Lygis:","clear":"⚡ Raudoni akmenys dingsta 4 sekundėms","heal":"❤ Gyvybės atkurtos","color":"🌈 Pagrindas pakeitė spalvą","tilt":"Pakreipk telefoną arba brauk pirštu"},"mt":{"lang":"Agħżel lingwa","title":"Star King","i1":"<b>Star King</b> hija logħba sempliċi fuq il-mowbajl: iġbor stilel sofor u evita ġebel aħmar.","i2":"Il-kontroll jaħdem l-istess billi tiġbed b’subgħajk jew tmejjel it-telefon: il-bażi timxi b’mod lixx lejn ix-xellug u lejn il-lemin.","i3":"Għandek <span class='red'>3 ħajjiet</span>. Kull ġebla ħamra tneħħi ħajja waħda. Wara t-tielet daqqa, il-logħba tispiċċa.","i4":"Kull 100 punt tidher kaxxa ta’ bonus tleqq. Meta tinġabar, il-logħba tagħżel effett każwali: ⚡ il-ġebel aħmar jisparixxi għal 4 sekondi, ❤ il-ħajjiet jiġu rrestawrati jew 🌈 il-bażi tibdel il-kulur.","i5":"","ph":"Isem għall-klassifika (mhux obbligatorju)","start":"Ibda","note":"","hint":"Iġbed b’subgħajk jew mejjel it-telefon.","score":"Punti","lives":"Ħajjiet","best":"L-aħjar","over":"Tmiem il-logħba","result":"Riżultat:","again":"Erġa’ ilgħab","board":"Klassifika","name":"Isem","points":"Punti","noname":"Ma ddaħħalx isem.","rank":"Livell:","clear":"⚡ Il-ġebel aħmar jisparixxi għal 4 sekondi","heal":"❤ Il-ħajjiet ġew irrestawrati","color":"🌈 Il-bażi bidlet il-kulur","tilt":"Mejjel it-telefon jew iġbed b’subgħajk"},"pl":{"lang":"Wybierz język","title":"Star King","i1":"<b>Star King</b> to prosta gra mobilna: zbieraj żółte gwiazdy i unikaj czerwonych kamieni.","i2":"Sterowanie działa tak samo przy przeciąganiu palcem i przechylaniu telefonu: podstawa płynnie porusza się w lewo i w prawo.","i3":"Masz <span class='red'>3 życia</span>. Każdy czerwony kamień zabiera jedno życie. Po trzecim trafieniu gra się kończy.","i4":"Co 100 punktów pojawia się świecące pudełko bonusowe. Po zebraniu gra losowo wybiera efekt: ⚡ czerwone kamienie znikają na 4 sekundy, ❤ życia się odnawiają albo 🌈 podstawa zmienia kolor.","i5":"","ph":"Nazwa do rankingu (opcjonalnie)","start":"Start","note":"","hint":"Przeciągnij palcem albo przechyl telefon.","score":"Punkty","lives":"Życia","best":"Najlepszy","over":"Koniec gry","result":"Wynik:","again":"Zagraj ponownie","board":"Ranking","name":"Nazwa","points":"Punkty","noname":"Nie wpisano nazwy.","rank":"Poziom:","clear":"⚡ Czerwone kamienie znikają na 4 sekundy","heal":"❤ Życia odnowione","color":"🌈 Podstawa zmieniła kolor","tilt":"Przechyl telefon albo przeciągnij palcem"},"pt":{"lang":"Escolher idioma","title":"Star King","i1":"<b>Star King</b> é um jogo móvel simples: apanha estrelas amarelas e evita pedras vermelhas.","i2":"O controlo funciona da mesma forma ao arrastar com o dedo ou ao inclinar o telefone: a base move-se suavemente para a esquerda e para a direita.","i3":"Tens <span class='red'>3 vidas</span>. Cada pedra vermelha tira uma vida. Depois do terceiro impacto, o jogo termina.","i4":"A cada 100 pontos aparece uma caixa de bónus brilhante. Ao apanhá-la, o jogo escolhe aleatoriamente um efeito: ⚡ as pedras vermelhas desaparecem por 4 segundos, ❤ as vidas são restauradas ou 🌈 a base muda de cor.","i5":"","ph":"Nome para a tabela (opcional)","start":"Começar","note":"","hint":"Arrasta com o dedo ou inclina o telefone.","score":"Pontos","lives":"Vidas","best":"Melhor","over":"Fim do jogo","result":"Resultado:","again":"Jogar novamente","board":"Tabela","name":"Nome","points":"Pontos","noname":"Nenhum nome inserido.","rank":"Nível:","clear":"⚡ As pedras vermelhas desaparecem por 4 segundos","heal":"❤ Vidas restauradas","color":"🌈 A base mudou de cor","tilt":"Inclina o telefone ou arrasta com o dedo"},"ro":{"lang":"Alege limba","title":"Star King","i1":"<b>Star King</b> este un joc mobil simplu: colectează stele galbene și evită pietrele roșii.","i2":"Controlul funcționează la fel prin glisare cu degetul și prin înclinarea telefonului: baza se mișcă lin la stânga și la dreapta.","i3":"Ai <span class='red'>3 vieți</span>. Fiecare piatră roșie ia o viață. După a treia lovitură, jocul se termină.","i4":"La fiecare 100 de puncte apare o cutie bonus strălucitoare. Când o colectezi, jocul alege aleatoriu un efect: ⚡ pietrele roșii dispar timp de 4 secunde, ❤ viețile se refac sau 🌈 baza își schimbă culoarea.","i5":"","ph":"Nume pentru clasament (opțional)","start":"Start","note":"","hint":"Glisează cu degetul sau înclină telefonul.","score":"Puncte","lives":"Vieți","best":"Cel mai bun","over":"Joc terminat","result":"Scor:","again":"Joacă din nou","board":"Clasament","name":"Nume","points":"Puncte","noname":"Nu a fost introdus un nume.","rank":"Nivel:","clear":"⚡ Pietrele roșii dispar timp de 4 secunde","heal":"❤ Viețile s-au refăcut","color":"🌈 Baza și-a schimbat culoarea","tilt":"Înclină telefonul sau glisează cu degetul"},"sk":{"lang":"Vyber jazyk","title":"Star King","i1":"<b>Star King</b> je jednoduchá mobilná hra: zbieraj žlté hviezdy a vyhýbaj sa červeným kameňom.","i2":"Ovládanie funguje rovnako pri ťahaní prstom aj pri nakláňaní telefónu: základňa sa plynulo pohybuje doľava a doprava.","i3":"Máš <span class='red'>3 životy</span>. Každý červený kameň vezme jeden život. Po treťom zásahu sa hra skončí.","i4":"Každých 100 bodov sa objaví žiariaca bonusová krabica. Po jej získaní hra náhodne vyberie efekt: ⚡ červené kamene zmiznú na 4 sekundy, ❤ životy sa obnovia alebo 🌈 základňa zmení farbu.","i5":"","ph":"Meno do rebríčka (voliteľné)","start":"Štart","note":"","hint":"Ťahaj prstom alebo nakloň telefón.","score":"Body","lives":"Životy","best":"Najlepšie","over":"Koniec hry","result":"Výsledok:","again":"Hrať znova","board":"Rebríček","name":"Meno","points":"Body","noname":"Meno nebolo zadané.","rank":"Úroveň:","clear":"⚡ Červené kamene zmiznú na 4 sekundy","heal":"❤ Životy obnovené","color":"🌈 Základňa zmenila farbu","tilt":"Nakloň telefón alebo ťahaj prstom"},"sl":{"lang":"Izberi jezik","title":"Star King","i1":"<b>Star King</b> je preprosta mobilna igra: zbiraj rumene zvezde in se izogibaj rdečim kamnom.","i2":"Upravljanje deluje enako z vlečenjem s prstom in nagibanjem telefona: osnova se gladko premika levo in desno.","i3":"Imaš <span class='red'>3 življenja</span>. Vsak rdeč kamen vzame eno življenje. Po tretjem zadetku je igre konec.","i4":"Vsakih 100 točk se pojavi svetleča bonusna škatla. Ko jo pobereš, igra naključno izbere učinek: ⚡ rdeči kamni izginejo za 4 sekunde, ❤ življenja se obnovijo ali 🌈 osnova spremeni barvo.","i5":"","ph":"Ime za lestvico (neobvezno)","start":"Začni","note":"","hint":"Povleci s prstom ali nagni telefon.","score":"Točke","lives":"Življenja","best":"Najboljše","over":"Konec igre","result":"Rezultat:","again":"Igraj znova","board":"Lestvica","name":"Ime","points":"Točke","noname":"Ime ni vneseno.","rank":"Raven:","clear":"⚡ Rdeči kamni izginejo za 4 sekunde","heal":"❤ Življenja obnovljena","color":"🌈 Osnova je spremenila barvo","tilt":"Nagni telefon ali povleci s prstom"},"es":{"lang":"Elegir idioma","title":"Star King","i1":"<b>Star King</b> es un juego móvil sencillo: recoge estrellas amarillas y evita piedras rojas.","i2":"El control funciona igual al arrastrar con el dedo y al inclinar el teléfono: la base se mueve suavemente a izquierda y derecha.","i3":"Tienes <span class='red'>3 vidas</span>. Cada piedra roja quita una vida. Después del tercer golpe, la partida termina.","i4":"Cada 100 puntos aparece una caja de bonificación brillante. Al recogerla, el juego elige al azar un efecto: ⚡ las piedras rojas desaparecen durante 4 segundos, ❤ las vidas se restauran o 🌈 la base cambia de color.","i5":"","ph":"Nombre para la clasificación (opcional)","start":"Empezar","note":"","hint":"Arrastra con el dedo o inclina el teléfono.","score":"Puntos","lives":"Vidas","best":"Mejor","over":"Fin del juego","result":"Resultado:","again":"Jugar otra vez","board":"Clasificación","name":"Nombre","points":"Puntos","noname":"No se introdujo ningún nombre.","rank":"Nivel:","clear":"⚡ Las piedras rojas desaparecen durante 4 segundos","heal":"❤ Vidas restauradas","color":"🌈 La base cambió de color","tilt":"Inclina el teléfono o arrastra con el dedo"},"sv":{"lang":"Välj språk","title":"Star King","i1":"<b>Star King</b> är ett enkelt mobilspel: samla gula stjärnor och undvik röda stenar.","i2":"Styrningen fungerar likadant med fingerdragning och telefonlutning: basen rör sig mjukt åt vänster och höger.","i3":"Du har <span class='red'>3 liv</span>. Varje röd sten tar ett liv. Efter tredje träffen är spelet slut.","i4":"Varje 100 poäng visas en lysande bonuslåda. När du samlar in den väljer spelet slumpmässigt en effekt: ⚡ röda stenar försvinner i 4 sekunder, ❤ liv återställs eller 🌈 basen ändrar färg.","i5":"","ph":"Namn för topplistan (valfritt)","start":"Starta","note":"","hint":"Dra med fingret eller luta telefonen.","score":"Poäng","lives":"Liv","best":"Bästa","over":"Spelet är slut","result":"Resultat:","again":"Spela igen","board":"Topplista","name":"Namn","points":"Poäng","noname":"Inget namn angavs.","rank":"Nivå:","clear":"⚡ Röda stenar försvinner i 4 sekunder","heal":"❤ Liv återställda","color":"🌈 Basen ändrade färg","tilt":"Luta telefonen eller dra med fingret"}};
-
-const FORCE_DEFAULT_LANGUAGE = "en";
-try {
-  localStorage.removeItem("kaldekoguja_lang");
-  localStorage.removeItem("star_king_lang");
-} catch(e) {}
 const canvas=document.getElementById("game"),ctx=canvas.getContext("2d"),$=id=>document.getElementById(id);
 let W=360,H=640,S=1,frame=0,running=false,paused=false;
-let score=0,lives=3,best=Number(localStorage.getItem("kaldekoguja_best")||0);
-let currentName=localStorage.getItem("kaldekoguja_name")||"", currentLang="en";
-let player={x:180,y:560,w:68,h:32,vx:0,targetX:180,color:"#2e9fdb",targetColor:"#2e9fdb"};
-let items=[],particles=[],powerups=[],floatTexts=[],levelRings=[];
-let spawnT=0,speed=1.8,tiltX=0,hasTilt=false,touching=false,audioCtx=null;
-let nextPowerScore=100,redClearTimer=0,bonusText="",bonusTextTimer=0,lastRank="";
-const playerColors=["#2e9fdb","#8e24aa","#2e9f5b","#fb8c00","#ec407a","#fdd835","#7e57c2","#00acc1","#d4af37","#e53935"];
-const ranks=[["Õpipoiss",0,50],["Algaja",50,100],["Koguja",100,175],["Kiire käsi",175,275],["Tähekütt",275,400],["Tähelkõndija",400,550],["Välgupüüdja",550,750],["Meister",750,1000],["Legend",1000,1300],["Tähekuningas",1300,999999]];
+let score=0,stars=0,best=Number(localStorage.getItem("love_liina_best")||0);
+let items=[],parts=[],texts=[],spawnT=0;
+let tilt=0,hasTilt=false,touch=false;
+let player={x:180,y:560,w:68,h:32,targetX:180,color:"#2e9fdb"};
+let wakeLock=null,wakeTimer=null,keepVid=null,keepCan=null,keepCtx=null,keepFrame=0;
 
-function getRank(){for(const r of ranks){if(score>=r[1]&&score<r[2])return r}return ranks[0]}
-function applyLanguage(lang){
- const t=I18N[lang]||I18N.et; currentLang=lang; 
- const ids={languageLabel:"lang",titleText:"title",intro1:"i1",intro2:"i2",intro3:"i3",intro4:"i4",intro5:"i5",smallNote:"note"};
- Object.keys(ids).forEach(id=>{if($(id))$(id)&&($(id).innerHTML=t[ids[id]])});
- $("playerName").placeholder=t.ph;$("startBtn").textContent=t.start;$("hint").textContent=t.hint;
- $("scoreLabel").textContent=t.score;$("livesLabel").textContent=t.lives;$("bestLabel").textContent=t.best;
- $("overTitle").textContent=t.over;$("resultLabel").textContent=t.result;$("againBtn").textContent=t.again;
- $("boardTitle").textContent=t.board;$("nameTh").textContent=t.name;$("pointsTh").textContent=t.points;$("noNameNote").textContent=t.noname;$("finalRankLabel").textContent=t.rank;
- $("languageSelect").value=lang;
+function wakeStatus(t){let e=$("wakeStatus");if(e)e.textContent=t}
+async function wake(){try{fallback();if("wakeLock"in navigator){wakeLock=await navigator.wakeLock.request("screen");wakeStatus("Ekraanilukk: aktiivne mängimise ajal");if(wakeLock.addEventListener)wakeLock.addEventListener("release",()=>{wakeLock=null;if(running)setTimeout(wake,500)});return}}catch(e){}wakeStatus("Ekraanilukk: varurežiim aktiivne")}
+function fallback(){try{if(keepVid)return;keepCan=document.createElement("canvas");keepCan.width=2;keepCan.height=2;keepCan.style.cssText="position:fixed;left:-20px;top:-20px;width:1px;height:1px;opacity:0";document.body.appendChild(keepCan);keepCtx=keepCan.getContext("2d");keepVid=document.createElement("video");keepVid.muted=true;keepVid.loop=true;keepVid.autoplay=true;keepVid.setAttribute("playsinline","");keepVid.style.cssText=keepCan.style.cssText;document.body.appendChild(keepVid);let st=keepCan.captureStream?keepCan.captureStream(1):null;if(st){keepVid.srcObject=st;keepVid.play().catch(()=>{})}function tick(){if(!running)return;keepFrame++;if(keepCtx){keepCtx.fillStyle=keepFrame%2?"#000":"#111";keepCtx.fillRect(0,0,2,2)}setTimeout(tick,1000)}tick()}catch(e){}}
+function startWake(){wake();if(wakeTimer)clearInterval(wakeTimer);wakeTimer=setInterval(()=>{if(running)wake()},4000)}
+async function stopWake(){if(wakeTimer)clearInterval(wakeTimer);wakeTimer=null;try{if(wakeLock)await wakeLock.release()}catch(e){}wakeLock=null;if(keepVid){keepVid.pause();keepVid.remove();keepVid=null}if(keepCan){keepCan.remove();keepCan=null}wakeStatus("Ekraanilukk: mitteaktiivne")}
+
+function resize(){let cw=Math.min(innerWidth,520),ch=innerHeight;canvas.width=cw;canvas.height=ch;canvas.style.width=cw+"px";canvas.style.height=ch+"px";W=cw;H=ch;S=W/360;player.y=H-92}addEventListener("resize",resize);resize();
+function rand(a,b){return Math.random()*(b-a)+a}function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
+function addText(x,y,t,b=false){texts.push({x,y,t,life:b?150:55,b})}
+function boom(x,y){for(let i=0;i<18;i++)parts.push({x,y,vx:rand(-2.8,2.8)*S,vy:rand(-2.8,2.8)*S,r:rand(2,4)*S,life:26})}
+function hud(){$("score").textContent=score;$("stars").textContent=stars;$("best").textContent=best;$("prog").style.width=((stars%50)/50*100)+"%";$("lvlName").textContent="LOVE Liina — järgmine +5000 boonus: "+(50-stars%50)+" tähte";}
+function start(){score=0;stars=0;items=[];parts=[];texts=[];spawnT=0;player.x=W/2;player.targetX=W/2;running=true;paused=false;$("start").classList.add("hidden");$("over").classList.add("hidden");$("pauseScreen").classList.add("hidden");$("pauseBtn").classList.add("visible");startWake();hud()}
+function gameOver(){stopWake();running=false;if(score>best){best=score;localStorage.setItem("love_liina_best",best)}$("finalScore").textContent=score;$("finalStars").textContent=stars;$("pauseBtn").classList.remove("visible");$("over").classList.remove("hidden")}
+function togglePause(){if(!running)return;paused=!paused;if(!paused)startWake();$("pauseScreen").classList.toggle("hidden",!paused);$("pauseBtn").textContent=paused?"▶":"⏸"}
+
+function spawn(){items.push({x:rand(28*S,W-28*S),y:-35*S,r:12*S,vy:(1.75+Math.min(1.2,stars/700)+rand(0,.55))*S,spin:rand(0,6.28)})}
+function collect(i){
+  stars++;
+  score+=10;
+  boom(i.x,i.y);
+  addText(i.x,i.y,"+10");
+  if(stars%50===0){score+=5000;addText(W/2,H*.30,"+5000 LOVE BONUS",true)}
+  if(stars%100===0){addText(W/2,H*.42,"Armastand sind kallis",true)}
+  if(stars%500===0){addText(W/2,H*.50,"Sa oled mu täht",true)}
 }
-$("best").textContent=best;$("playerName").value=currentName;currentLang="en";applyLanguage("en");
-$("languageSelect").addEventListener("change",e=>applyLanguage(e.target.value));
-function cleanName(v){return (v||"").trim().replace(/\s+/g," ").slice(0,18)}
-function getBoard(){try{const d=JSON.parse(localStorage.getItem("kaldekoguja_board")||"[]");return Array.isArray(d)?d:[]}catch(e){return[]}}
-function saveBoard(b){localStorage.setItem("kaldekoguja_board",JSON.stringify(b.slice(0,10)))}
-function addToBoard(name,points){name=cleanName(name);if(!name)return null;const b=getBoard();b.push({name,score:points,date:Date.now()});b.sort((a,b)=>b.score-a.score||a.date-b.date);saveBoard(b);return b.slice(0,10)}
-function renderBoard(board){const body=$("leaderboardBody");body.innerHTML="";board.forEach((r,i)=>{const tr=document.createElement("tr");[i+1,r.name,r.score].forEach(v=>{const td=document.createElement("td");td.textContent=v;tr.appendChild(td)});body.appendChild(tr)})}
-function resize(){const cw=Math.min(innerWidth,520),ch=innerHeight;canvas.style.width=cw+"px";canvas.style.height=ch+"px";canvas.width=cw;canvas.height=ch;ctx.setTransform(1,0,0,1,0,0);W=cw;H=ch;S=W/360;player.y=H-96;player.x=Math.max(player.w*S/2,Math.min(W-player.w*S/2,player.x))}
-addEventListener("resize",resize);resize();
-function initAudio(){try{const Ctx=window.AudioContext||window.webkitAudioContext;if(!Ctx)return;if(!audioCtx)audioCtx=new Ctx();if(audioCtx.state==="suspended")audioCtx.resume()}catch(e){}}
-function tone(f1,f2,d=.10,v=.04,type="sine"){try{if(!audioCtx)return;const n=audioCtx.currentTime,o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=type;o.frequency.setValueAtTime(f1,n);o.frequency.exponentialRampToValueAtTime(Math.max(40,f2),n+d);g.gain.setValueAtTime(.0001,n);g.gain.exponentialRampToValueAtTime(v,n+.015);g.gain.exponentialRampToValueAtTime(.0001,n+d);o.connect(g);g.connect(audioCtx.destination);o.start(n);o.stop(n+d+.03)}catch(e){}}
-function good(){tone(520,840,.12,.05)}function bad(){tone(160,80,.15,.06,"triangle")}function bonusSound(){tone(420,900,.16,.065);setTimeout(()=>tone(650,1150,.14,.05),90)}function rankSound(){tone(500,1000,.12,.055);setTimeout(()=>tone(700,1200,.12,.045),80)}
+function hit(c,r){let x=clamp(c.x,r.x-r.w/2,r.x+r.w/2),y=clamp(c.y,r.y-r.h/2,r.y+r.h/2),dx=c.x-x,dy=c.y-y;return dx*dx+dy*dy<c.r*c.r}
 
-let wakeLockObj = null;
-let wakeRetryTimer = null;
-let keepAwakeVideo = null;
-let keepAwakeCanvas = null;
-let keepAwakeCtx = null;
-let keepAwakeFrame = 0;
-
-function setWakeStatus(text){
-  const el = document.getElementById("wakeStatus");
-  if(el) el.textContent = text;
+function update(){if(!running||paused)return;
+  if(hasTilt&&!touch)player.targetX=W/2+tilt*(W*.42);
+  let min=player.w*S/2,max=W-player.w*S/2;player.targetX=clamp(player.targetX,min,max);
+  let dx=player.targetX-player.x;player.x+=clamp(dx*.18,-8*S,8*S);player.x=clamp(player.x,min,max);
+  spawnT++;if(spawnT>Math.max(18,30-Math.floor(stars/120))){spawnT=0;spawn()}
+  for(let i of items){i.y+=i.vy;i.spin+=.06}
+  let box={x:player.x,y:player.y,w:player.w*S,h:player.h*S};
+  for(let i of items)if(!i.dead&&hit(i,box)){i.dead=true;collect(i)}
+  items=items.filter(i=>!i.dead&&i.y<H+70);
+  for(let p of parts){p.x+=p.vx;p.y+=p.vy;p.life--}parts=parts.filter(p=>p.life>0);
+  for(let t of texts){t.y-=.25*S;t.life--}texts=texts.filter(t=>t.life>0);
+  hud();
 }
-
-async function requestScreenWakeLock(){
-  try{
-    if(!("wakeLock" in navigator)){
-      setWakeStatus("Screen lock: fallback mode active");
-      return false;
-    }
-    if(document.visibilityState !== "visible"){
-      setWakeStatus("Screen lock: page not visible");
-      return false;
-    }
-    wakeLockObj = await navigator.wakeLock.request("screen");
-    setWakeStatus("Screen lock: active while playing");
-    if(wakeLockObj && wakeLockObj.addEventListener){
-      wakeLockObj.addEventListener("release", () => {
-        wakeLockObj = null;
-        if(running) setTimeout(() => enableKeepScreenOn(), 500);
-      });
-    }
-    return true;
-  }catch(e){
-    setWakeStatus("Screen lock: fallback mode active");
-    wakeLockObj = null;
-    return false;
-  }
-}
-
-function startKeepAwakeFallback(){
-  try{
-    if(keepAwakeVideo) return;
-
-    keepAwakeCanvas = document.createElement("canvas");
-    keepAwakeCanvas.width = 2;
-    keepAwakeCanvas.height = 2;
-    keepAwakeCanvas.style.position = "fixed";
-    keepAwakeCanvas.style.left = "-20px";
-    keepAwakeCanvas.style.top = "-20px";
-    keepAwakeCanvas.style.width = "1px";
-    keepAwakeCanvas.style.height = "1px";
-    keepAwakeCanvas.style.opacity = "0";
-    keepAwakeCanvas.style.pointerEvents = "none";
-    document.body.appendChild(keepAwakeCanvas);
-    keepAwakeCtx = keepAwakeCanvas.getContext("2d");
-
-    keepAwakeVideo = document.createElement("video");
-    keepAwakeVideo.muted = true;
-    keepAwakeVideo.loop = true;
-    keepAwakeVideo.autoplay = true;
-    keepAwakeVideo.setAttribute("playsinline","");
-    keepAwakeVideo.setAttribute("webkit-playsinline","");
-    keepAwakeVideo.style.position = "fixed";
-    keepAwakeVideo.style.left = "-20px";
-    keepAwakeVideo.style.top = "-20px";
-    keepAwakeVideo.style.width = "1px";
-    keepAwakeVideo.style.height = "1px";
-    keepAwakeVideo.style.opacity = "0";
-    keepAwakeVideo.style.pointerEvents = "none";
-    document.body.appendChild(keepAwakeVideo);
-
-    const stream = keepAwakeCanvas.captureStream ? keepAwakeCanvas.captureStream(1) : null;
-    if(stream){
-      keepAwakeVideo.srcObject = stream;
-      keepAwakeVideo.play().catch(()=>{});
-    }
-
-    function tickKeepAwakeCanvas(){
-      if(!running) return;
-      keepAwakeFrame++;
-      if(keepAwakeCtx){
-        keepAwakeCtx.fillStyle = keepAwakeFrame % 2 ? "#000" : "#111";
-        keepAwakeCtx.fillRect(0,0,2,2);
-      }
-      setTimeout(tickKeepAwakeCanvas, 1000);
-    }
-    tickKeepAwakeCanvas();
-  }catch(e){}
-}
-
-function stopKeepAwakeFallback(){
-  try{
-    if(keepAwakeVideo){
-      keepAwakeVideo.pause();
-      keepAwakeVideo.remove();
-      keepAwakeVideo = null;
-    }
-    if(keepAwakeCanvas){
-      keepAwakeCanvas.remove();
-      keepAwakeCanvas = null;
-      keepAwakeCtx = null;
-    }
-  }catch(e){}
-}
-
-function startWakeRetryLoop(){
-  if(wakeRetryTimer) clearInterval(wakeRetryTimer);
-  wakeRetryTimer = setInterval(() => {
-    if(running && document.visibilityState === "visible") enableKeepScreenOn();
-  }, 4000);
-}
-
-function stopWakeRetryLoop(){
-  if(wakeRetryTimer){
-    clearInterval(wakeRetryTimer);
-    wakeRetryTimer = null;
-  }
-}
-
-async function enableKeepScreenOn(){
-  startKeepAwakeFallback();
-  await requestScreenWakeLock();
-  startWakeRetryLoop();
-}
-
-async function releaseScreenWakeLock(){
-  stopWakeRetryLoop();
-  stopKeepAwakeFallback();
-  try{
-    if(wakeLockObj){
-      await wakeLockObj.release();
-      wakeLockObj = null;
-    }
-  }catch(e){
-    wakeLockObj = null;
-  }
-  setWakeStatus("Screen lock: inactive");
-}
-
-document.addEventListener("visibilitychange", () => {
-  if(document.visibilityState === "visible" && running) enableKeepScreenOn();
-});
-
-["touchstart","pointerdown","click"].forEach(evt => {
-  window.addEventListener(evt, () => {
-    if(running) enableKeepScreenOn();
-  }, {passive:true});
-});
-
-function rand(a,b){return Math.random()*(b-a)+a}
-async function enableTilt(){try{if(typeof DeviceOrientationEvent!=="undefined"&&typeof DeviceOrientationEvent.requestPermission==="function"){const res=await DeviceOrientationEvent.requestPermission();if(res!=="granted")return}window.addEventListener("deviceorientation",e=>{if(typeof e.gamma==="number"){tiltX=Math.max(-1,Math.min(1,e.gamma/28));hasTilt=true}})}catch(e){}}
-function startGame(){initAudio();enableKeepScreenOn();enableTilt();currentName=cleanName($("playerName").value);if(currentName)localStorage.setItem("kaldekoguja_name",currentName);else localStorage.removeItem("kaldekoguja_name");running=true;paused=false;score=0;lives=3;speed=1.8;spawnT=0;items=[];particles=[];powerups=[];levelRings=[];floatTexts=[];levelRings=[];nextPowerScore=100;redClearTimer=0;bonusText="";bonusTextTimer=0;lastRank="Õpipoiss";player.x=W/2;player.targetX=W/2;player.vx=0;player.color="#2e9fdb";$("score").textContent=score;$("lives").textContent=lives;$("start").classList.add("hidden");$("pauseBtn").classList.add("visible");$("over").classList.add("hidden");updateRankHud()}
-function gameOver(){releaseScreenWakeLock();running=false;if(score>best){best=score;localStorage.setItem("kaldekoguja_best",best);$("best").textContent=best}$("finalScore").textContent=score;$("finalRank").textContent=getRank()[0];if(currentName){renderBoard(addToBoard(currentName,score)||getBoard());$("leaderboardWrap").classList.remove("hidden");$("noNameNote").classList.add("hidden")}else{$("leaderboardWrap").classList.add("hidden");$("noNameNote").classList.remove("hidden")}$("pauseBtn").classList.remove("visible");$("pauseScreen").classList.add("hidden");paused=false;$("over").classList.remove("hidden")}
-
-
-
-function currentLevelIndex(){
-  const r=getRank();
-  const idx=ranks.findIndex(x=>x[0]===r[0]);
-  return Math.max(0,idx);
-}
-
-function levelSpeedFactor(){
-  const idx=currentLevelIndex();
-  if(idx<=5){
-    return Math.pow(1.05,idx);
-  }
-  return Math.pow(1.05,5) * Math.pow(1.10,idx-5);
-}
-
-function difficulty(){
-  return levelSpeedFactor();
-}
-
-function currentSpawnRate(){
-  return Math.max(22,70/levelSpeedFactor());
-}
-
-function spawn(){const d=difficulty(), extra=Math.random()<Math.min(.24,score/1050);for(let n=0;n<(extra?2:1);n++){const goodItem=redClearTimer>0 ? true : Math.random()>(.30+Math.min(.13,score/850));items.push({x:rand(28*S,W-28*S),y:-30*S-rand(0,60)*S,r:goodItem?12*S:15*S,type:goodItem?"star":"rock",vy:(speed+rand(0,0.85))*S*d,spin:rand(0,Math.PI*2)})}}
-function spawnPowerup(){powerups.push({x:rand(38*S,W-38*S),y:-40*S,r:20*S,vy:Math.max(2.05*S,speed*.82*levelSpeedFactor()),spin:0,pulse:0,type:"random"})}
-function hitCircleRect(c,r){const x=Math.max(r.x-r.w/2,Math.min(r.x+r.w/2,c.x)),y=Math.max(r.y-r.h/2,Math.min(r.y+r.h/2,c.y)),dx=c.x-x,dy=c.y-y;return dx*dx+dy*dy<c.r*c.r}
-function boom(x,y,ok){for(let i=0;i<14;i++)particles.push({x,y,vx:rand(-2.6,2.6)*S,vy:rand(-2.6,2.6)*S,life:24,r:rand(2,4.6)*S,good:ok})}
-function setBonusText(t){bonusText=t;bonusTextTimer=240}
-function activatePowerup(p){bonusSound();if(navigator.vibrate)navigator.vibrate([28,30,28]);const roll=Math.floor(Math.random()*3);if(roll===0){items=items.filter(i=>i.type!=="rock");redClearTimer=240;setBonusText((I18N[currentLang]||I18N.en).clear);}else if(roll===1){lives=3;$("lives").textContent=lives;setBonusText((I18N[currentLang]||I18N.en).heal);}else{let c=player.color;for(let i=0;i<10&&c===player.color;i++)c=playerColors[Math.floor(Math.random()*playerColors.length)];player.color=c;setBonusText((I18N[currentLang]||I18N.en).color);}boom(p.x,p.y,true)}
-function updateRankHud(){const r=getRank();$("rankName").textContent=r[0];let p=r[2]>999999?1:(score-r[1])/(r[2]-r[1]);$("rankProgress").style.width=Math.max(0,Math.min(100,p*100))+"%";if(r[0]!==lastRank&&running){lastRank=r[0];rankSound();spawnLevelRing(r[0]);floatTexts.push({x:W/2,y:H*.23,text:r[0],life:120,big:true})}}
-function update(){if(!running||paused)return;speed=1.8*levelSpeedFactor();if(redClearTimer>0){redClearTimer--;items=items.filter(i=>i.type!=="rock");}if(bonusTextTimer>0)bonusTextTimer--;if(hasTilt&&!touching){player.targetX=W/2+tiltX*(W*.42)}const minX=player.w*S/2,maxX=W-player.w*S/2;player.targetX=Math.max(minX,Math.min(maxX,player.targetX));const dx=player.targetX-player.x;const maxStep=8*S;player.x+=Math.max(-maxStep,Math.min(maxStep,dx*.18));player.x=Math.max(minX,Math.min(maxX,player.x));spawnT++;const spawnRate=currentSpawnRate();if(spawnT>spawnRate){spawnT=0;spawn()}while(score>=nextPowerScore){spawnPowerup();nextPowerScore+=100}items.forEach(i=>{i.y+=i.vy;i.spin+=.06});powerups.forEach(p=>{p.y+=p.vy;p.spin+=.08;p.pulse+=.12});particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.life--});floatTexts.forEach(f=>{f.y-=.25*S;f.life--});levelRings.forEach(l=>{l.life--;l.spin+=.08;l.pulse+=.12;});const box={x:player.x,y:player.y,w:player.w*S,h:player.h*S};for(const p of powerups){if(!p.dead&&hitCircleRect(p,box)){p.dead=true;activatePowerup(p)}}for(const i of items){if(i.dead)continue;if(hitCircleRect(i,box)){i.dead=true;if(i.type==="star"){score++;$("score").textContent=score;floatTexts.push({x:i.x,y:i.y,text:"+1",life:35});boom(i.x,i.y,true);good();if(navigator.vibrate)navigator.vibrate(15);updateRankHud()}else{lives--;$("lives").textContent=lives;boom(i.x,i.y,false);bad();if(navigator.vibrate)navigator.vibrate([50,25,50]);if(lives<=0){gameOver();return}}}}items=items.filter(i=>!i.dead&&i.y<H+55);powerups=powerups.filter(p=>!p.dead&&p.y<H+65);particles=particles.filter(p=>p.life>0);levelRings=levelRings.filter(l=>l.life>0);floatTexts=floatTexts.filter(f=>f.life>0);levelRings=levelRings.filter(l=>l.life>0)}
 function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath()}
-function drawBg(){const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,"#1b3d5d");g.addColorStop(.55,"#102132");g.addColorStop(1,"#071018");ctx.fillStyle=g;ctx.fillRect(0,0,W,H);if(redClearTimer>0){ctx.fillStyle="rgba(120,220,255,.13)";ctx.fillRect(0,0,W,H)}for(let i=0;i<30;i++){const x=(i*73+frame*.16)%W,y=80+(i*91)%Math.max(120,H-180);ctx.fillStyle=i%5===0?"rgba(255,217,102,.16)":"rgba(255,255,255,.08)";ctx.beginPath();ctx.arc(x,y,1.5+(i%3),0,Math.PI*2);ctx.fill()}}
-function drawPlayer(){const w=player.w*S,h=player.h*S,x=player.x,y=player.y;ctx.save();ctx.translate(x,y);ctx.fillStyle="rgba(0,0,0,.35)";ctx.beginPath();ctx.ellipse(0,h*.55,w*.6,h*.22,0,0,Math.PI*2);ctx.fill();ctx.fillStyle=player.color;rr(-w/2,-h/2,w,h,14*S);ctx.fill();ctx.fillStyle="rgba(255,255,255,.46)";rr(-w*.32,-h*.38,w*.64,h*.30,9*S);ctx.fill();ctx.fillStyle="#0b1118";ctx.fillRect(-w*.45,h*.10,w*.18,h*.30);ctx.fillRect(w*.27,h*.10,w*.18,h*.30);ctx.fillStyle="#ffd966";ctx.beginPath();ctx.arc(-w*.24,-h*.28,3.6*S,0,Math.PI*2);ctx.arc(w*.24,-h*.28,3.6*S,0,Math.PI*2);ctx.fill();ctx.restore()}
-function drawStar(x,y,r,rot){ctx.save();ctx.translate(x,y);ctx.rotate(rot);ctx.shadowBlur=12*S;ctx.shadowColor="#ffd966";ctx.fillStyle="#ffd966";ctx.beginPath();for(let i=0;i<10;i++){const a=i*Math.PI/5-Math.PI/2,rrr=i%2===0?r:r*.45;ctx.lineTo(Math.cos(a)*rrr,Math.sin(a)*rrr)}ctx.closePath();ctx.fill();ctx.restore()}
-function drawRock(x,y,r,rot){ctx.save();ctx.translate(x,y);ctx.rotate(rot);ctx.shadowBlur=8*S;ctx.shadowColor="#ff5d5d";ctx.fillStyle="#ff5d5d";ctx.beginPath();ctx.moveTo(-r*.7,-r*.2);ctx.lineTo(-r*.25,-r*.75);ctx.lineTo(r*.55,-r*.50);ctx.lineTo(r*.75,r*.15);ctx.lineTo(r*.20,r*.72);ctx.lineTo(-r*.62,r*.52);ctx.closePath();ctx.fill();ctx.fillStyle="rgba(0,0,0,.25)";ctx.beginPath();ctx.arc(-r*.18,-r*.10,r*.16,0,Math.PI*2);ctx.fill();ctx.restore()}
-function drawPowerup(p){const blink=Math.sin(frame*.22+p.pulse),glow=10*S+Math.max(0,blink)*13*S;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.spin);ctx.shadowBlur=18*S;ctx.shadowColor="#8fd7ff";ctx.fillStyle="#8fd7ff";ctx.beginPath();ctx.arc(0,0,p.r+glow*.15,0,Math.PI*2);ctx.fill();ctx.fillStyle="rgba(255,255,255,.25)";ctx.beginPath();ctx.arc(0,0,p.r+glow,0,Math.PI*2);ctx.fill();ctx.fillStyle="#1e88e5";ctx.beginPath();ctx.arc(0,0,p.r,0,Math.PI*2);ctx.fill();ctx.strokeStyle="#fff";ctx.lineWidth=3*S;ctx.stroke();ctx.fillStyle="#fff";ctx.font=`bold ${18*S}px Arial`;ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText("?",0,1*S);ctx.restore()}
+function bg(){let g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,"#1b3d5d");g.addColorStop(1,"#071018");ctx.fillStyle=g;ctx.fillRect(0,0,W,H);for(let i=0;i<34;i++){ctx.fillStyle=i%4?"rgba(255,255,255,.09)":"rgba(255,217,102,.22)";ctx.beginPath();ctx.arc((i*73+frame*.13)%W,60+(i*89)%Math.max(120,H-140),1.5+i%3,0,6.28);ctx.fill()}}
+function star(x,y,r,rot,c="#ffd966"){ctx.save();ctx.translate(x,y);ctx.rotate(rot);ctx.shadowBlur=14*S;ctx.shadowColor=c;ctx.fillStyle=c;ctx.beginPath();for(let i=0;i<10;i++){let a=i*Math.PI/5-Math.PI/2,rrr=i%2?r*.45:r;ctx.lineTo(Math.cos(a)*rrr,Math.sin(a)*rrr)}ctx.closePath();ctx.fill();ctx.restore()}
+function draw(){ctx.clearRect(0,0,W,H);bg();for(let i of items)star(i.x,i.y,i.r,i.spin);for(let p of parts){ctx.globalAlpha=p.life/26;ctx.fillStyle="#ffd966";ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.28);ctx.fill();ctx.globalAlpha=1}let w=player.w*S,h=player.h*S;ctx.save();ctx.translate(player.x,player.y);ctx.fillStyle="rgba(0,0,0,.35)";ctx.beginPath();ctx.ellipse(0,h*.55,w*.6,h*.22,0,0,6.28);ctx.fill();ctx.fillStyle=player.color;rr(-w/2,-h/2,w,h,14*S);ctx.fill();ctx.fillStyle="rgba(255,255,255,.46)";rr(-w*.32,-h*.38,w*.64,h*.30,9*S);ctx.fill();ctx.restore();for(let t of texts){ctx.globalAlpha=Math.min(1,t.life/20);ctx.fillStyle=t.b?"#ffd966":"#fff";ctx.font=`bold ${(t.b?24:15)*S}px Arial`;ctx.textAlign="center";ctx.fillText(t.t,t.x,t.y);ctx.globalAlpha=1}}
+function loop(){frame++;update();draw();requestAnimationFrame(loop)}
 
-function drawLevelRing(l){
-  const alpha=Math.min(1,l.life/25);
-  const pulse=10*S+Math.max(0,Math.sin(l.pulse))*14*S;
-  ctx.save();
-  ctx.globalAlpha=alpha;
-  ctx.translate(l.x,l.y);
-  ctx.rotate(l.spin);
-  ctx.shadowBlur=20*S;
-  ctx.shadowColor="#ffd966";
-  ctx.fillStyle="rgba(255,217,102,.18)";
-  ctx.beginPath();ctx.arc(0,0,l.r+pulse,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle="rgba(143,215,255,.35)";
-  ctx.beginPath();ctx.arc(0,0,l.r+6*S,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle="#8fd7ff";
-  ctx.beginPath();ctx.arc(0,0,l.r,0,Math.PI*2);ctx.fill();
-  ctx.strokeStyle="#ffffff";
-  ctx.lineWidth=3*S;
-  ctx.stroke();
-  ctx.fillStyle="#ffffff";
-  ctx.font=`bold ${18*S}px Arial`;
-  ctx.textAlign="center";
-  ctx.textBaseline="middle";
-  ctx.fillText("★",0,1*S);
-  ctx.restore();
-
-  ctx.save();
-  ctx.globalAlpha=alpha;
-  ctx.fillStyle="rgba(0,0,0,.42)";
-  rr(W*.12,l.y+42*S,W*.76,38*S,17*S);
-  ctx.fill();
-  ctx.fillStyle="#ffd966";
-  ctx.font=`bold ${16*S}px Arial`;
-  ctx.textAlign="center";
-  ctx.textBaseline="middle";
-  ctx.fillText(l.text,W/2,l.y+61*S);
-  ctx.restore();
-}
-
-function drawBonusText(){if(bonusTextTimer<=0)return;ctx.save();ctx.globalAlpha=Math.min(1,bonusTextTimer/20);ctx.fillStyle="rgba(0,0,0,.48)";rr(W*.07,H*.34,W*.86,56*S,20*S);ctx.fill();ctx.strokeStyle="rgba(255,255,255,.20)";ctx.stroke();ctx.fillStyle="#fff";ctx.font=`bold ${17*S}px Arial`;ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText(bonusText,W/2,H*.34+28*S);ctx.restore()}
-function draw(){ctx.clearRect(0,0,W,H);drawBg();for(const i of items)i.type==="star"?drawStar(i.x,i.y,i.r,i.spin):drawRock(i.x,i.y,i.r,i.spin);for(const p of powerups)drawPowerup(p);for(const l of levelRings)drawLevelRing(l);for(const p of particles){ctx.globalAlpha=p.life/24;ctx.fillStyle=p.good?"#ffd966":"#ff7a7a";ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1}drawPlayer();for(const f of floatTexts){ctx.globalAlpha=Math.min(1,f.life/20);ctx.fillStyle=f.big?"#ffd966":"#fff";ctx.font=`bold ${(f.big?24:16)*S}px Arial`;ctx.textAlign="center";ctx.fillText(f.text,f.x,f.y);ctx.globalAlpha=1}drawBonusText();if(!hasTilt&&running){ctx.fillStyle="rgba(255,255,255,.70)";ctx.font=`bold ${14*S}px Arial`;ctx.textAlign="center";ctx.fillText((I18N[currentLang]||I18N.en).tilt,W/2,H*.28)}}
-function loop(){frame++;try{update();draw()}catch(e){console.error(e)}requestAnimationFrame(loop)}
-canvas.addEventListener("touchstart",e=>{e.preventDefault();touching=true;const t=e.touches[0];player.targetX=t.clientX-(innerWidth-W)/2},{passive:false});
-canvas.addEventListener("touchmove",e=>{e.preventDefault();touching=true;const t=e.touches[0];player.targetX=t.clientX-(innerWidth-W)/2},{passive:false});
-canvas.addEventListener("touchend",e=>{e.preventDefault();touching=false},{passive:false});
-canvas.addEventListener("mousedown",e=>{touching=true;player.targetX=e.clientX-(innerWidth-W)/2});
-canvas.addEventListener("mousemove",e=>{if(touching)player.targetX=e.clientX-(innerWidth-W)/2});
-canvas.addEventListener("mouseup",()=>touching=false);canvas.addEventListener("mouseleave",()=>touching=false);
-window.addEventListener("keydown",e=>{if(e.key==="ArrowLeft"||e.key.toLowerCase()==="a")player.targetX-=26*S;if(e.key==="ArrowRight"||e.key.toLowerCase()==="d")player.targetX+=26*S;if(e.key==="Enter"&&!running)startGame();if(e.key==="Escape"&&running)togglePause()});
-
-function togglePause(){
-  if(!running)return;
-  paused=!paused;if(!paused){enableKeepScreenOn();}
-  $("pauseScreen").classList.toggle("hidden",!paused);
-  $("pauseBtn").textContent=paused?"▶":"⏸";
-}
-
-function bindStart(id){const el=$(id),fn=e=>{if(e)e.preventDefault();startGame()};el.addEventListener("click",fn);el.addEventListener("touchstart",fn,{passive:false});el.addEventListener("pointerdown",fn)}
-bindStart("startBtn");bindStart("againBtn");$("pauseBtn").addEventListener("click",togglePause);$("resumeBtn").addEventListener("click",togglePause);
-if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("service-worker.js").catch(()=>{}))}
-updateRankHud();loop();
+canvas.addEventListener("touchstart",e=>{e.preventDefault();touch=true;player.targetX=e.touches[0].clientX-(innerWidth-W)/2},{passive:false});
+canvas.addEventListener("touchmove",e=>{e.preventDefault();touch=true;player.targetX=e.touches[0].clientX-(innerWidth-W)/2},{passive:false});
+canvas.addEventListener("touchend",e=>{e.preventDefault();touch=false},{passive:false});
+canvas.addEventListener("mousedown",e=>{touch=true;player.targetX=e.clientX-(innerWidth-W)/2});
+canvas.addEventListener("mousemove",e=>{if(touch)player.targetX=e.clientX-(innerWidth-W)/2});
+canvas.addEventListener("mouseup",()=>touch=false);
+addEventListener("deviceorientation",e=>{if(typeof e.gamma==="number"){tilt=clamp(e.gamma/28,-1,1);hasTilt=true}});
+addEventListener("keydown",e=>{if(e.key==="ArrowLeft")player.targetX-=26*S;if(e.key==="ArrowRight")player.targetX+=26*S;if(e.key==="Escape")togglePause();if(e.key==="Enter"&&!running)start()});
+$("startBtn").addEventListener("click",start);$("againBtn").addEventListener("click",start);$("pauseBtn").addEventListener("click",togglePause);$("resumeBtn").addEventListener("click",togglePause);
+if("serviceWorker"in navigator)addEventListener("load",()=>navigator.serviceWorker.register("service-worker.js").catch(()=>{}));
+$("best").textContent=best;hud();loop();
 })();
 </script>
 </body>
