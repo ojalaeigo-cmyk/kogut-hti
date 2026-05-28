@@ -1,8 +1,8 @@
 {
   "name": "Star King",
   "short_name": "Star King",
-  "description": "Star King. English opens by default.",
-  "start_url": "./?forceenglish=1",
+  "description": "Star King with updated difficulty curve: levels 2-6 +5%, levels 7-10 +10%.",
+  "start_url": "./?difficultycurve=1",
   "scope": "./",
   "display": "standalone",
   "background_color": "#071018",

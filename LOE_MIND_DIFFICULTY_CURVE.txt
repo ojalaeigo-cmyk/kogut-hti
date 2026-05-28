@@ -1,0 +1,22 @@
+STAR KING - DIFFICULTY CURVE
+
+Aluseks võetud uusim saadaval olev Star King versioon.
+
+Raskusloogika:
+- 1. tase = baastase / tavakiirus.
+- 2. tase = 1. tasemest 5% raskem.
+- 3. tase = 2. tasemest 5% raskem.
+- 4. tase = 3. tasemest 5% raskem.
+- 5. tase = 4. tasemest 5% raskem.
+- 6. tase = 5. tasemest 5% raskem.
+- 7. tase = 6. tasemest 10% raskem.
+- 8. tase = 7. tasemest 10% raskem.
+- 9. tase = 8. tasemest 10% raskem.
+- 10. tase = 9. tasemest 10% raskem.
+
+Kontroll avakuval:
+DIFFICULTY CURVE: L2-L6 +5%, L7-L10 +10%
+
+GitHubi:
+Lae selle kausta SEES olevad failid repo juurkausta.
+Ära lae üles ZIP-i ega tervet kausta.
