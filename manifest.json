@@ -1,8 +1,8 @@
 {
-  "name": "LOVE Liina",
-  "short_name": "LOVE Liina",
-  "description": "LOVE Liina: armas tähtede püüdmise mäng.",
-  "start_url": "./?loveliina=1",
+  "name": "Star King",
+  "short_name": "Star King",
+  "description": "Star King 30-level boss version.",
+  "start_url": "./?level30boss=1",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",

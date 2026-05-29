@@ -1,0 +1,18 @@
+STAR KING - LEVEL 30 BOSS VERSION
+
+Lisatud:
+- 30 levelit nimedega.
+- Iga leveli lõpus on boss.
+- Bossil on 3 elu / 3 tabamust.
+- Bossil on 3 võimet: kivivihm, külglask ja gravitatsioonitõmme.
+- Bossi hävitamiseks tuleb bossi ajal koguda rohelisi attack-tähti.
+- Iga 5. kogutud täht annab +5% upgrade'i.
+- Upgrade kasvatab võrdselt mängija liikumist ja kukkuvate objektide tempot.
+- Iga 100 punkti järel ilmub random boonuskast.
+- Igal 3. levelil lisanduvad tumedad tähed ja pommid.
+- Ekraani ärkvel hoidmise loogika on sees.
+
+GitHub:
+Lae üles selle kausta sees olevad failid repo juurkausta.
+Testlink:
+https://ojalaeigo-cmyk.github.io/kogut-hti/?level30boss=1

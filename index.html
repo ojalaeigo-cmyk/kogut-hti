@@ -1,121 +1,79 @@
 <!DOCTYPE html>
-<html lang="et">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>LOVE Liina</title>
+<title>Star King</title>
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#071018">
 <style>
-*{box-sizing:border-box;margin:0;padding:0;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
-html,body{width:100%;height:100%;overflow:hidden;background:#071018;font-family:Arial,sans-serif}
-#wrap{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at top,#244869,#071018 70%)}
-canvas{width:100vw;height:100vh;max-width:520px;background:#102033;touch-action:none}
-#hud{position:fixed;top:10px;left:50%;transform:translateX(-50%);width:min(94vw,500px);display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;color:white;font-weight:bold;font-size:13px;text-align:center;text-shadow:0 2px 3px #000;z-index:5;pointer-events:none}
-.box{background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:7px}
-#level{position:fixed;top:82px;left:50%;transform:translateX(-50%);width:min(92vw,480px);color:white;text-align:center;z-index:5;font-weight:bold;text-shadow:0 2px 3px #000;pointer-events:none}
-#lvlName{color:#ffd966}.bar{height:8px;background:rgba(255,255,255,.18);border-radius:99px;overflow:hidden;margin-top:6px}.bar>div{height:100%;width:0;background:linear-gradient(90deg,#8fd7ff,#ffd966)}
-#pauseBtn{position:fixed;top:124px;right:calc(50% - min(47vw,250px));z-index:8;display:none;border:1px solid rgba(255,255,255,.24);background:rgba(0,0,0,.5);color:white;border-radius:999px;padding:8px 11px;font-size:16px;font-weight:bold}
-.visible{display:block!important}.screen{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.82);z-index:20;color:white;text-align:center;padding:22px}
-.panel{width:min(92vw,470px);max-height:88vh;overflow:auto;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.07));border:1px solid rgba(255,255,255,.22);border-radius:26px;padding:24px 18px;box-shadow:0 22px 60px rgba(0,0,0,.45)}
-h1{font-size:38px;color:#ffd966;margin-bottom:8px}.panel p{font-size:14px;line-height:1.35;margin-bottom:9px;opacity:.94}
-.legend{display:grid;gap:6px;text-align:left;margin:10px 0}.legend div{background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.13);border-radius:13px;padding:7px 9px;font-size:13px}
-button{border:0;border-radius:999px;padding:15px 28px;font-size:18px;font-weight:bold;background:#fff;color:#111;cursor:pointer;margin-top:4px}
-.small{font-size:12px!important;opacity:.75!important}.hidden{display:none!important}.yellow{color:#ffd966}.green{color:#8cffb1}.pink{color:#ffb3d9}
+*{box-sizing:border-box;margin:0;padding:0;user-select:none;-webkit-user-select:none}html,body{width:100%;height:100%;overflow:hidden;background:#071018;font-family:Arial,sans-serif}#wrap{position:fixed;inset:0;display:flex;justify-content:center;align-items:center;background:radial-gradient(circle at top,#244869,#071018 70%)}canvas{width:100vw;height:100vh;max-width:520px;background:#102033;touch-action:none}#hud{position:fixed;top:10px;left:50%;transform:translateX(-50%);width:min(94vw,500px);display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;color:#fff;font-weight:bold;font-size:13px;text-align:center;text-shadow:0 2px 3px #000;z-index:5;pointer-events:none}.box{background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:7px}#level{position:fixed;top:80px;left:50%;transform:translateX(-50%);width:min(92vw,480px);color:white;text-align:center;z-index:5;font-weight:bold;text-shadow:0 2px 3px #000;pointer-events:none}#lvlName{color:#ffd966}.bar{height:8px;background:rgba(255,255,255,.18);border-radius:99px;overflow:hidden;margin-top:6px}.bar>div{height:100%;width:0;background:linear-gradient(90deg,#8fd7ff,#ffd966)}#pauseBtn{position:fixed;top:122px;right:calc(50% - min(47vw,250px));z-index:8;display:none;border:1px solid rgba(255,255,255,.24);background:rgba(0,0,0,.5);color:white;border-radius:999px;padding:8px 11px;font-size:16px;font-weight:bold}.visible{display:block!important}.screen{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.82);z-index:20;color:white;text-align:center;padding:22px}.panel{width:min(92vw,470px);max-height:88vh;overflow:auto;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.07));border:1px solid rgba(255,255,255,.22);border-radius:26px;padding:23px 18px;box-shadow:0 22px 60px rgba(0,0,0,.45)}h1{font-size:38px;color:#ffd966;margin-bottom:8px}.panel p{font-size:14px;line-height:1.35;margin-bottom:9px;opacity:.94}.legend{display:grid;gap:6px;text-align:left;margin:10px 0}.legend div{background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.13);border-radius:13px;padding:7px 9px;font-size:13px}button{border:0;border-radius:999px;padding:15px 28px;font-size:18px;font-weight:bold;background:#fff;color:#111;cursor:pointer;margin-top:4px}.small{font-size:12px!important;opacity:.75!important}.hidden{display:none!important}.yellow{color:#ffd966}.red{color:#ff9c9c}.green{color:#8cffb1}
 </style>
 </head>
 <body>
 <div id="wrap"><canvas id="game"></canvas></div>
-<div id="hud">
-  <div class="box">Punktid<br><span id="score" class="yellow">0</span></div>
-  <div class="box">Tähed<br><span id="stars" class="green">0</span></div>
-  <div class="box">Parim<br><span id="best" class="pink">0</span></div>
-</div>
-<div id="level"><div id="lvlName">LOVE Liina</div><div class="bar"><div id="prog"></div></div></div>
+<div id="hud"><div class="box">Score<br><span id="score" class="yellow">0</span></div><div class="box">Lives<br><span id="lives" class="red">3</span></div><div class="box">Best<br><span id="best" class="green">0</span></div></div>
+<div id="level"><div id="lvlName">Level 1 / 30</div><div class="bar"><div id="prog"></div></div></div>
 <button id="pauseBtn">⏸</button>
-
-<div id="start" class="screen">
-  <div class="panel">
-    <h1>LOVE Liina</h1>
-    <p><b>Armas tähemäng.</b> Ainult kollased tähed. Ühtegi punast ega halba asja ei ole.</p>
-    <div class="legend">
-      <div>⭐ Iga täht annab +10 punkti.</div>
-      <div>🎁 Iga 50 püütud tähte annab automaatselt +5000 punkti.</div>
-      <div>💛 Iga 100 püütud tähte näitab: <b>Armastand sind kallis</b></div>
-      <div>✨ Iga 500 püütud tähte näitab: <b>Sa oled mu täht</b></div>
-    </div>
-    <p id="screenWakeMarker" class="small" style="color:#8cffb1;font-weight:bold">SCREEN ALWAYS ON MODE</p>
-    <p id="wakeStatus" class="small" style="color:#ffd966">Ekraanilukk: ootab alustamist</p>
-    <button id="startBtn">Alusta</button>
-  </div>
-</div>
-
-<div id="pauseScreen" class="screen hidden"><div class="panel"><h1>Paus</h1><p>Mäng on peatatud.</p><button id="resumeBtn">Jätka</button></div></div>
-<div id="over" class="screen hidden"><div class="panel"><h1>Mäng läbi</h1><p>Punktid: <b><span id="finalScore">0</span></b></p><p>Tähed: <b><span id="finalStars">0</span></b></p><button id="againBtn">Mängi uuesti</button></div></div>
-
+<div id="start" class="screen"><div class="panel"><h1>Star King</h1>
+<p><b>30-level boss version.</b> Collect stars, survive hazards and defeat every level boss.</p>
+<div class="legend"><div>⭐ Every 5th collected star gives +5% upgrade to your movement and falling speed.</div><div>🎁 Every 100 points gives a random bonus box.</div><div>💣 Every 3rd level adds dark stars and bombs. Difficulty grows by extra objects, not only speed.</div><div>👾 Every level ends with a boss. Boss has 3 hearts and 3 abilities: rock rain, side shots and gravity pull.</div></div>
+<p id="screenWakeMarker" class="small" style="color:#8cffb1;font-weight:bold">SCREEN ALWAYS ON MODE</p><p id="wakeStatus" class="small" style="color:#ffd966">Screen lock: waiting for Start</p>
+<button id="startBtn">Start</button></div></div>
+<div id="pauseScreen" class="screen hidden"><div class="panel"><h1>Pause</h1><p>Game is paused.</p><button id="resumeBtn">Resume</button></div></div>
+<div id="over" class="screen hidden"><div class="panel"><h1>Game over</h1><p>Score: <b><span id="finalScore">0</span></b></p><p>Reached: <b><span id="finalLevel">Level 1</span></b></p><button id="againBtn">Play again</button></div></div>
 <script>
 (function(){
 "use strict";
+const NAMES=["Star Rookie", "Moon Walker", "Comet Catcher", "Orbit Runner", "Nova Scout", "Star Walker", "Meteor Guard", "Solar Rider", "Nebula Hunter", "Cosmic Keeper", "Astro Blade", "Galaxy Scout", "Void Breaker", "Light Runner", "Stardust Ranger", "Photon Knight", "Pulsar Guard", "Aurora Hunter", "Gravity Master", "Solar Champion", "Nova Knight", "Comet Lord", "Meteor Warden", "Nebula Captain", "Galaxy Guardian", "Void Tamer", "Starlight Hero", "Supernova Master", "Cosmic Legend", "Star King"];
 const canvas=document.getElementById("game"),ctx=canvas.getContext("2d"),$=id=>document.getElementById(id);
-let W=360,H=640,S=1,frame=0,running=false,paused=false;
-let score=0,stars=0,best=Number(localStorage.getItem("love_liina_best")||0);
-let items=[],parts=[],texts=[],spawnT=0;
-let tilt=0,hasTilt=false,touch=false;
+let W=360,H=640,S=1,frame=0,running=false,paused=false,score=0,lives=3,best=Number(localStorage.getItem("sk_best")||0),level=1,levelStart=0,nextLevel=50,stars=0,upg=0,nextBox=100,items=[],boxes=[],texts=[],parts=[],boss=null,spawnT=0,tilt=0,hasTilt=false,touch=false;
 let player={x:180,y:560,w:68,h:32,targetX:180,color:"#2e9fdb"};
 let wakeLock=null,wakeTimer=null,keepVid=null,keepCan=null,keepCtx=null,keepFrame=0;
 
 function wakeStatus(t){let e=$("wakeStatus");if(e)e.textContent=t}
-async function wake(){try{fallback();if("wakeLock"in navigator){wakeLock=await navigator.wakeLock.request("screen");wakeStatus("Ekraanilukk: aktiivne mängimise ajal");if(wakeLock.addEventListener)wakeLock.addEventListener("release",()=>{wakeLock=null;if(running)setTimeout(wake,500)});return}}catch(e){}wakeStatus("Ekraanilukk: varurežiim aktiivne")}
+async function wake(){try{fallback();if("wakeLock"in navigator){wakeLock=await navigator.wakeLock.request("screen");wakeStatus("Screen lock: active while playing");if(wakeLock.addEventListener)wakeLock.addEventListener("release",()=>{wakeLock=null;if(running)setTimeout(wake,500)});return}}catch(e){}wakeStatus("Screen lock: fallback mode active")}
 function fallback(){try{if(keepVid)return;keepCan=document.createElement("canvas");keepCan.width=2;keepCan.height=2;keepCan.style.cssText="position:fixed;left:-20px;top:-20px;width:1px;height:1px;opacity:0";document.body.appendChild(keepCan);keepCtx=keepCan.getContext("2d");keepVid=document.createElement("video");keepVid.muted=true;keepVid.loop=true;keepVid.autoplay=true;keepVid.setAttribute("playsinline","");keepVid.style.cssText=keepCan.style.cssText;document.body.appendChild(keepVid);let st=keepCan.captureStream?keepCan.captureStream(1):null;if(st){keepVid.srcObject=st;keepVid.play().catch(()=>{})}function tick(){if(!running)return;keepFrame++;if(keepCtx){keepCtx.fillStyle=keepFrame%2?"#000":"#111";keepCtx.fillRect(0,0,2,2)}setTimeout(tick,1000)}tick()}catch(e){}}
 function startWake(){wake();if(wakeTimer)clearInterval(wakeTimer);wakeTimer=setInterval(()=>{if(running)wake()},4000)}
-async function stopWake(){if(wakeTimer)clearInterval(wakeTimer);wakeTimer=null;try{if(wakeLock)await wakeLock.release()}catch(e){}wakeLock=null;if(keepVid){keepVid.pause();keepVid.remove();keepVid=null}if(keepCan){keepCan.remove();keepCan=null}wakeStatus("Ekraanilukk: mitteaktiivne")}
+async function stopWake(){if(wakeTimer)clearInterval(wakeTimer);wakeTimer=null;try{if(wakeLock)await wakeLock.release()}catch(e){}wakeLock=null;if(keepVid){keepVid.pause();keepVid.remove();keepVid=null}if(keepCan){keepCan.remove();keepCan=null}wakeStatus("Screen lock: inactive")}
 
 function resize(){let cw=Math.min(innerWidth,520),ch=innerHeight;canvas.width=cw;canvas.height=ch;canvas.style.width=cw+"px";canvas.style.height=ch+"px";W=cw;H=ch;S=W/360;player.y=H-92}addEventListener("resize",resize);resize();
 function rand(a,b){return Math.random()*(b-a)+a}function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
-function addText(x,y,t,b=false){texts.push({x,y,t,life:b?150:55,b})}
-function boom(x,y){for(let i=0;i<18;i++)parts.push({x,y,vx:rand(-2.8,2.8)*S,vy:rand(-2.8,2.8)*S,r:rand(2,4)*S,life:26})}
-function hud(){$("score").textContent=score;$("stars").textContent=stars;$("best").textContent=best;$("prog").style.width=((stars%50)/50*100)+"%";$("lvlName").textContent="LOVE Liina — järgmine +5000 boonus: "+(50-stars%50)+" tähte";}
-function start(){score=0;stars=0;items=[];parts=[];texts=[];spawnT=0;player.x=W/2;player.targetX=W/2;running=true;paused=false;$("start").classList.add("hidden");$("over").classList.add("hidden");$("pauseScreen").classList.add("hidden");$("pauseBtn").classList.add("visible");startWake();hud()}
-function gameOver(){stopWake();running=false;if(score>best){best=score;localStorage.setItem("love_liina_best",best)}$("finalScore").textContent=score;$("finalStars").textContent=stars;$("pauseBtn").classList.remove("visible");$("over").classList.remove("hidden")}
+function speed(){return 1.8*Math.pow(1.05,upg)}
+function complexity(){let i=level-1;return i<=5?Math.pow(1.05,i):Math.pow(1.05,5)*Math.pow(1.10,i-5)}
+function addText(x,y,t,b=false){texts.push({x,y,t,life:b?110:45,b})}
+function boom(x,y,g){for(let i=0;i<14;i++)parts.push({x,y,vx:rand(-2.5,2.5)*S,vy:rand(-2.5,2.5)*S,r:rand(2,4)*S,life:24,g})}
+function hud(){ $("score").textContent=score;$("lives").textContent=lives;$("best").textContent=best;let p=boss?100:clamp((score-levelStart)/(nextLevel-levelStart)*100,0,100);$("prog").style.width=p+"%";$("lvlName").textContent="Level "+level+" / 30 — "+NAMES[level-1]+(boss?" — BOSS "+boss.hp+"/3":"")}
+function start(){score=0;lives=3;level=1;levelStart=0;nextLevel=50;stars=0;upg=0;nextBox=100;items=[];boxes=[];texts=[];parts=[];boss=null;spawnT=0;player.x=W/2;player.targetX=W/2;running=true;paused=false;$("start").classList.add("hidden");$("over").classList.add("hidden");$("pauseScreen").classList.add("hidden");$("pauseBtn").classList.add("visible");startWake();hud()}
+function gameOver(){stopWake();running=false;if(score>best){best=score;localStorage.setItem("sk_best",best)}$("finalScore").textContent=score;$("finalLevel").textContent="Level "+level+" — "+NAMES[level-1];$("pauseBtn").classList.remove("visible");$("over").classList.remove("hidden")}
 function togglePause(){if(!running)return;paused=!paused;if(!paused)startWake();$("pauseScreen").classList.toggle("hidden",!paused);$("pauseBtn").textContent=paused?"▶":"⏸"}
 
-function spawn(){items.push({x:rand(28*S,W-28*S),y:-35*S,r:12*S,vy:(1.75+Math.min(1.2,stars/700)+rand(0,.55))*S,spin:rand(0,6.28)})}
-function collect(i){
-  stars++;
-  score+=10;
-  boom(i.x,i.y);
-  addText(i.x,i.y,"+10");
-  if(stars%50===0){score+=5000;addText(W/2,H*.30,"+5000 LOVE BONUS",true)}
-  if(stars%100===0){addText(W/2,H*.42,"Armastand sind kallis",true)}
-  if(stars%500===0){addText(W/2,H*.50,"Sa oled mu täht",true)}
-}
+function spawn(){let c=complexity(),haz=clamp(.24+level*.012,.24,.55),type=Math.random()<haz?"rock":"star";if(level%3===0&&Math.random()<.12+level*.004)type="dark";if(level%3===0&&Math.random()<.05)type="bomb";items.push({type,x:rand(28*S,W-28*S),y:-35*S,r:(type==="star"?12:15)*S,vy:(speed()+rand(0,.85))*S*(1+Math.min(.7,c*.035)),spin:rand(0,6.28)})}
+function powerBox(){boxes.push({x:rand(38*S,W-38*S),y:-40*S,r:20*S,vy:Math.max(2.05*S,speed()*.82),spin:0})}
+function activateBox(b){let r=Math.floor(Math.random()*3);if(r===0){items=items.filter(i=>i.type==="star"||i.type==="attack");addText(b.x,b.y,"⚡ CLEAR",true)}else if(r===1){lives=3;addText(b.x,b.y,"❤ LIVES",true)}else{let cs=["#2e9fdb","#8e24aa","#2e9f5b","#fb8c00","#ec407a","#fdd835"];player.color=cs[Math.floor(Math.random()*cs.length)];addText(b.x,b.y,"🌈 COLOR",true)}boom(b.x,b.y,true)}
+function startBoss(){items=[];boxes=[];boss={x:W/2,y:95*S,w:112*S,h:64*S,hp:3,t:0};addText(W/2,H*.30,"BOSS: "+NAMES[level-1],true)}
+function bossSpawn(){boss.t++;if(boss.t%42===0)items.push({type:"attack",x:rand(34*S,W-34*S),y:-35*S,r:13*S,vy:(2.8+level*.03)*S,spin:0});if(boss.t%32===0)items.push({type:"rock",x:rand(24*S,W-24*S),y:boss.y+25*S,r:15*S,vy:(2.2+level*.04)*S,spin:0});if(boss.t%95===0)items.push({type:"side",x:Math.random()<.5?-20*S:W+20*S,y:rand(H*.25,H*.70),r:14*S,vx:Math.random()<.5?3.3*S:-3.3*S,vy:0,spin:0});if(boss.t%160<55)player.targetX+=(boss.x-player.targetX)*.006}
+function beatBoss(){boss=null;if(level<30){level++;levelStart=score;nextLevel=levelStart+50+Math.floor(level*7);addText(W/2,H*.30,"LEVEL "+level+": "+NAMES[level-1],true)}else{nextLevel=999999;addText(W/2,H*.30,"YOU ARE THE STAR KING",true)}}
 function hit(c,r){let x=clamp(c.x,r.x-r.w/2,r.x+r.w/2),y=clamp(c.y,r.y-r.h/2,r.y+r.h/2),dx=c.x-x,dy=c.y-y;return dx*dx+dy*dy<c.r*c.r}
+function collect(x,y,atk){stars++;score+=atk?10:1;if(stars%5===0){upg++;addText(x,y,"UPGRADE +5%",true)}while(score>=nextBox){powerBox();nextBox+=100}}
 
-function update(){if(!running||paused)return;
-  if(hasTilt&&!touch)player.targetX=W/2+tilt*(W*.42);
-  let min=player.w*S/2,max=W-player.w*S/2;player.targetX=clamp(player.targetX,min,max);
-  let dx=player.targetX-player.x;player.x+=clamp(dx*.18,-8*S,8*S);player.x=clamp(player.x,min,max);
-  spawnT++;if(spawnT>Math.max(18,30-Math.floor(stars/120))){spawnT=0;spawn()}
-  for(let i of items){i.y+=i.vy;i.spin+=.06}
-  let box={x:player.x,y:player.y,w:player.w*S,h:player.h*S};
-  for(let i of items)if(!i.dead&&hit(i,box)){i.dead=true;collect(i)}
-  items=items.filter(i=>!i.dead&&i.y<H+70);
-  for(let p of parts){p.x+=p.vx;p.y+=p.vy;p.life--}parts=parts.filter(p=>p.life>0);
-  for(let t of texts){t.y-=.25*S;t.life--}texts=texts.filter(t=>t.life>0);
-  hud();
-}
+function update(){if(!running||paused)return;if(hasTilt&&!touch)player.targetX=W/2+tilt*(W*.42);let min=player.w*S/2,max=W-player.w*S/2;player.targetX=clamp(player.targetX,min,max);let dx=player.targetX-player.x;player.x+=clamp(dx*.18,-8*S,8*S);player.x=clamp(player.x,min,max);
+if(!boss&&score>=nextLevel)startBoss();if(boss)bossSpawn();else{spawnT++;if(spawnT>Math.max(20,62/(1+level*.025))){spawnT=0;spawn()}}
+for(let b of boxes){b.y+=b.vy;b.spin+=.08}for(let i of items){if(i.type==="side"){i.x+=i.vx}else i.y+=i.vy;i.spin+=.06}
+let box={x:player.x,y:player.y,w:player.w*S,h:player.h*S};for(let b of boxes)if(!b.dead&&hit(b,box)){b.dead=true;activateBox(b)}
+for(let i of items){if(i.dead)continue;if(hit(i,box)){i.dead=true;if(i.type==="star"){collect(i.x,i.y,false);boom(i.x,i.y,true)}else if(i.type==="attack"){if(boss){boss.hp--;addText(i.x,i.y,"HIT "+boss.hp+"/3",true);if(boss.hp<=0)beatBoss()}collect(i.x,i.y,true);boom(i.x,i.y,true)}else{lives--;boom(i.x,i.y,false);if(navigator.vibrate)navigator.vibrate([40,20,40]);if(lives<=0)return gameOver()}}}
+items=items.filter(i=>!i.dead&&i.y<H+70&&i.x>-70&&i.x<W+70);boxes=boxes.filter(b=>!b.dead&&b.y<H+70);for(let p of parts){p.x+=p.vx;p.y+=p.vy;p.life--}parts=parts.filter(p=>p.life>0);for(let t of texts){t.y-=.25*S;t.life--}texts=texts.filter(t=>t.life>0);hud()}
+
 function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath()}
-function bg(){let g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,"#1b3d5d");g.addColorStop(1,"#071018");ctx.fillStyle=g;ctx.fillRect(0,0,W,H);for(let i=0;i<34;i++){ctx.fillStyle=i%4?"rgba(255,255,255,.09)":"rgba(255,217,102,.22)";ctx.beginPath();ctx.arc((i*73+frame*.13)%W,60+(i*89)%Math.max(120,H-140),1.5+i%3,0,6.28);ctx.fill()}}
-function star(x,y,r,rot,c="#ffd966"){ctx.save();ctx.translate(x,y);ctx.rotate(rot);ctx.shadowBlur=14*S;ctx.shadowColor=c;ctx.fillStyle=c;ctx.beginPath();for(let i=0;i<10;i++){let a=i*Math.PI/5-Math.PI/2,rrr=i%2?r*.45:r;ctx.lineTo(Math.cos(a)*rrr,Math.sin(a)*rrr)}ctx.closePath();ctx.fill();ctx.restore()}
-function draw(){ctx.clearRect(0,0,W,H);bg();for(let i of items)star(i.x,i.y,i.r,i.spin);for(let p of parts){ctx.globalAlpha=p.life/26;ctx.fillStyle="#ffd966";ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.28);ctx.fill();ctx.globalAlpha=1}let w=player.w*S,h=player.h*S;ctx.save();ctx.translate(player.x,player.y);ctx.fillStyle="rgba(0,0,0,.35)";ctx.beginPath();ctx.ellipse(0,h*.55,w*.6,h*.22,0,0,6.28);ctx.fill();ctx.fillStyle=player.color;rr(-w/2,-h/2,w,h,14*S);ctx.fill();ctx.fillStyle="rgba(255,255,255,.46)";rr(-w*.32,-h*.38,w*.64,h*.30,9*S);ctx.fill();ctx.restore();for(let t of texts){ctx.globalAlpha=Math.min(1,t.life/20);ctx.fillStyle=t.b?"#ffd966":"#fff";ctx.font=`bold ${(t.b?24:15)*S}px Arial`;ctx.textAlign="center";ctx.fillText(t.t,t.x,t.y);ctx.globalAlpha=1}}
+function bg(){let g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,"#1b3d5d");g.addColorStop(1,"#071018");ctx.fillStyle=g;ctx.fillRect(0,0,W,H);for(let i=0;i<32;i++){ctx.fillStyle=i%5?"rgba(255,255,255,.08)":"rgba(255,217,102,.18)";ctx.beginPath();ctx.arc((i*73+frame*.13)%W,60+(i*89)%Math.max(120,H-140),1.5+i%3,0,6.28);ctx.fill()}}
+function star(x,y,r,rot,c="#ffd966"){ctx.save();ctx.translate(x,y);ctx.rotate(rot);ctx.shadowBlur=12*S;ctx.shadowColor=c;ctx.fillStyle=c;ctx.beginPath();for(let i=0;i<10;i++){let a=i*Math.PI/5-Math.PI/2,rrr=i%2?r*.45:r;ctx.lineTo(Math.cos(a)*rrr,Math.sin(a)*rrr)}ctx.closePath();ctx.fill();ctx.restore()}
+function rock(i){ctx.save();ctx.translate(i.x,i.y);ctx.rotate(i.spin);ctx.shadowBlur=8*S;ctx.shadowColor=i.type==="dark"?"#b26dff":"#ff5d5d";ctx.fillStyle=i.type==="bomb"?"#111":i.type==="dark"?"#b26dff":"#ff5d5d";ctx.beginPath();ctx.arc(0,0,i.r,0,6.28);ctx.fill();ctx.fillStyle="#fff";ctx.font=`${i.r}px Arial`;ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText(i.type==="bomb"?"💣":i.type==="dark"?"✦":"",0,1);ctx.restore()}
+function draw(){ctx.clearRect(0,0,W,H);bg();if(boss){ctx.save();ctx.translate(boss.x,boss.y);ctx.shadowBlur=18*S;ctx.shadowColor="#ff5d5d";ctx.fillStyle="#6b1b8f";rr(-boss.w/2,-boss.h/2,boss.w,boss.h,20*S);ctx.fill();ctx.fillStyle="#fff";ctx.font=`bold ${18*S}px Arial`;ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText("👾 "+boss.hp+"/3",0,0);ctx.restore()}for(let b of boxes){ctx.save();ctx.translate(b.x,b.y);ctx.rotate(b.spin);ctx.shadowBlur=18*S;ctx.shadowColor="#8fd7ff";ctx.fillStyle="#1e88e5";ctx.beginPath();ctx.arc(0,0,b.r,0,6.28);ctx.fill();ctx.strokeStyle="#fff";ctx.lineWidth=3*S;ctx.stroke();ctx.fillStyle="#fff";ctx.font=`bold ${18*S}px Arial`;ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText("?",0,1*S);ctx.restore()}for(let i of items){if(i.type==="star")star(i.x,i.y,i.r,i.spin);else if(i.type==="attack")star(i.x,i.y,i.r,i.spin,"#8cffb1");else rock(i)}for(let p of parts){ctx.globalAlpha=p.life/24;ctx.fillStyle=p.g?"#ffd966":"#ff7a7a";ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.28);ctx.fill();ctx.globalAlpha=1}let w=player.w*S,h=player.h*S;ctx.save();ctx.translate(player.x,player.y);ctx.fillStyle="rgba(0,0,0,.35)";ctx.beginPath();ctx.ellipse(0,h*.55,w*.6,h*.22,0,0,6.28);ctx.fill();ctx.fillStyle=player.color;rr(-w/2,-h/2,w,h,14*S);ctx.fill();ctx.fillStyle="rgba(255,255,255,.46)";rr(-w*.32,-h*.38,w*.64,h*.30,9*S);ctx.fill();ctx.restore();for(let t of texts){ctx.globalAlpha=Math.min(1,t.life/20);ctx.fillStyle=t.b?"#ffd966":"#fff";ctx.font=`bold ${(t.b?22:15)*S}px Arial`;ctx.textAlign="center";ctx.fillText(t.t,t.x,t.y);ctx.globalAlpha=1}}
 function loop(){frame++;update();draw();requestAnimationFrame(loop)}
 
 canvas.addEventListener("touchstart",e=>{e.preventDefault();touch=true;player.targetX=e.touches[0].clientX-(innerWidth-W)/2},{passive:false});
 canvas.addEventListener("touchmove",e=>{e.preventDefault();touch=true;player.targetX=e.touches[0].clientX-(innerWidth-W)/2},{passive:false});
 canvas.addEventListener("touchend",e=>{e.preventDefault();touch=false},{passive:false});
-canvas.addEventListener("mousedown",e=>{touch=true;player.targetX=e.clientX-(innerWidth-W)/2});
-canvas.addEventListener("mousemove",e=>{if(touch)player.targetX=e.clientX-(innerWidth-W)/2});
-canvas.addEventListener("mouseup",()=>touch=false);
+canvas.addEventListener("mousedown",e=>{touch=true;player.targetX=e.clientX-(innerWidth-W)/2});canvas.addEventListener("mousemove",e=>{if(touch)player.targetX=e.clientX-(innerWidth-W)/2});canvas.addEventListener("mouseup",()=>touch=false);
 addEventListener("deviceorientation",e=>{if(typeof e.gamma==="number"){tilt=clamp(e.gamma/28,-1,1);hasTilt=true}});
 addEventListener("keydown",e=>{if(e.key==="ArrowLeft")player.targetX-=26*S;if(e.key==="ArrowRight")player.targetX+=26*S;if(e.key==="Escape")togglePause();if(e.key==="Enter"&&!running)start()});
 $("startBtn").addEventListener("click",start);$("againBtn").addEventListener("click",start);$("pauseBtn").addEventListener("click",togglePause);$("resumeBtn").addEventListener("click",togglePause);
